@@ -1,33 +1,19 @@
----
-home: true
-title: Home
-heroImage: https://vuejs.press/images/hero.png
-actions:
-  - text: Get Started
-    link: /get-started.html
-    type: primary
+# 技术文档中心
 
-  - text: Introduction
-    link: https://vuejs.press/guide/introduction.html
-    type: secondary
+欢迎来到技术文档中心，这里包含了有关.NET和Golang的详细文档。
 
-features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
-  - title: Bundlers
-    details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
+## 文档导航
 
-footer: MIT Licensed | Copyright © 2018-present VuePress Community
----
+在左侧侧边栏中，您可以找到所有的文档分类和具体内容。我们主要提供以下技术的文档：
 
-This is the content of home page. Check [Home Page Docs][default-theme-home] for more details.
+- **.NET 文档**：包含.NET框架的基础知识、安装指南和WebAPI示例
+- **Golang 文档**：包含Go语言的基础知识、安装指南和使用方法
 
-[default-theme-home]: https://vuejs.press/reference/default-theme/frontmatter.html#home-page
+## 最新更新
+
+- 添加了 [.NET WebAPI 示例](/Net/webapi.html) - 详细介绍了如何使用.NET创建WebAPI应用
+- 更新了 [Golang安装指南](/Goland/installation.html) - 包含最新版本的安装步骤
+
+## 关于本文档
+
+本文档使用VuePress生成，所有内容均采用Markdown格式编写，便于维护和更新。侧边栏会自动根据文档结构生成，一级标题将作为侧边栏项目的标题。
