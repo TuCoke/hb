@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.20" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>.NET 安装指南 | VuePress</title><meta name="description" content="My first VuePress Site">
+    <link rel="stylesheet" href="/hb/assets/css/styles.8ac69efd.css">
+    <link rel="preload" href="/hb/assets/js/runtime~app.e74904c5.js" as="script"><link rel="preload" href="/hb/assets/css/styles.8ac69efd.css" as="style"><link rel="preload" href="/hb/assets/js/768.a0ded089.js" as="script"><link rel="preload" href="/hb/assets/js/app.c5cbecd8.js" as="script">
+    <link rel="prefetch" href="/hb/assets/js/Net_webapi.html.f4e031c8.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_basics.html.4d749dcd.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_basics.html.ac9e25ef.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_installation.html.ae0d1151.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_installation.html.912543d9.js" as="script"><link rel="prefetch" href="/hb/assets/js/index.html.ed2138ce.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_index.html.4b8e9073.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_index.html.1241bcf5.js" as="script"><link rel="prefetch" href="/hb/assets/js/get-started.html.20a70a0d.js" as="script"><link rel="prefetch" href="/hb/assets/js/404.html.6697cca1.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container no-navbar external-link-icon" vp-container><!--[--><!----><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar" vp-sidebar><!----><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading active collapsible">.NET 文档 <span class="down arrow"></span></p><ul style="" class="vp-sidebar-children"><!--[--><li><a class="route-link route-link-active auto-link vp-sidebar-item" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link route-link-active auto-link vp-sidebar-item active" href="/hb/Net/installation.html" aria-label=".NET 安装指南"><!--[--><!--[--><!--]--><!--]-->.NET 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/basics.html" aria-label=".NET 基础知识"><!--[--><!--[--><!--]--><!--]-->.NET 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/webapi.html" aria-label=".NET WebAPI 示例"><!--[--><!--[--><!--]--><!--]-->.NET WebAPI 示例<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">Golang 文档 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/installation.html" aria-label="Golang 安装指南"><!--[--><!--[--><!--]--><!--]-->Golang 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/basics.html" aria-label="Golang 基础知识"><!--[--><!--[--><!--]--><!--]-->Golang 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div vp-content><!--[--><!--]--><div><h1 id="net-安装指南" tabindex="-1"><a class="header-anchor" href="#net-安装指南"><span>.NET 安装指南</span></a></h1><p>本文档将指导您完成 .NET 的安装过程。</p><h2 id="系统要求" tabindex="-1"><a class="header-anchor" href="#系统要求"><span>系统要求</span></a></h2><p>在安装 .NET 之前，请确保您的系统满足以下最低要求：</p><ul><li>支持的操作系统：Windows、macOS、Linux</li><li>处理器：1.8 GHz 或更快</li><li>内存：2 GB RAM（建议 4 GB RAM）</li><li>磁盘空间：1 GB 可用空间</li></ul><h2 id="windows-安装步骤" tabindex="-1"><a class="header-anchor" href="#windows-安装步骤"><span>Windows 安装步骤</span></a></h2><ol><li>访问 <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener noreferrer">.NET 下载页面</a></li><li>下载 .NET SDK 安装程序</li><li>运行安装程序并按照提示操作</li><li>安装完成后，打开命令提示符并运行 <code>dotnet --version</code> 验证安装</li></ol><h2 id="macos-安装步骤" tabindex="-1"><a class="header-anchor" href="#macos-安装步骤"><span>macOS 安装步骤</span></a></h2><ol><li>访问 <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener noreferrer">.NET 下载页面</a></li><li>下载 macOS 版本的 .NET SDK</li><li>运行安装程序并按照提示操作</li><li>安装完成后，打开终端并运行 <code>dotnet --version</code> 验证安装</li></ol><h2 id="linux-安装步骤" tabindex="-1"><a class="header-anchor" href="#linux-安装步骤"><span>Linux 安装步骤</span></a></h2><p>不同的 Linux 发行版有不同的安装方法，以下是 Ubuntu 的安装步骤：</p><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code><span class="line"><span class="token comment"># 添加 Microsoft 包签名密钥</span></span>
+<span class="line"><span class="token function">wget</span> https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb <span class="token parameter variable">-O</span> packages-microsoft-prod.deb</span>
+<span class="line"><span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> packages-microsoft-prod.deb</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 安装 .NET SDK</span></span>
+<span class="line"><span class="token function">sudo</span> <span class="token function">apt-get</span> update</span>
+<span class="line"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> apt-transport-https</span>
+<span class="line"><span class="token function">sudo</span> <span class="token function">apt-get</span> update</span>
+<span class="line"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> dotnet-sdk-6.0</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>安装完成后，运行 <code>dotnet --version</code> 验证安装。</p></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">Last Updated:: </span><time class="meta-item-info" datetime="2025-05-25T12:42:40.000Z" data-allow-mismatch>5/25/25, 12:42 PM</time></div><div class="vp-meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: 2764136779@qq.com">Bo-Hong</span><!----><!--]--><!--]--></span></div></div></footer><nav class="vp-page-nav" aria-label="page navigation"><a class="route-link route-link-active auto-link prev" href="/hb/Net/" aria-label=".NET 文档"><!--[--><div class="hint"><span class="arrow left"></span> Prev</div><div class="link"><span class="external-link">.NET 文档</span></div><!--]--></a><a class="route-link auto-link next" href="/hb/Net/basics.html" aria-label=".NET 基础知识"><!--[--><div class="hint">Next <span class="arrow right"></span></div><div class="link"><span class="external-link">.NET 基础知识</span></div><!--]--></a></nav><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script src="/hb/assets/js/runtime~app.e74904c5.js" defer></script><script src="/hb/assets/js/768.a0ded089.js" defer></script><script src="/hb/assets/js/app.c5cbecd8.js" defer></script>
+  </body>
+</html>

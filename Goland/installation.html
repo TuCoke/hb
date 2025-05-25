@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.20" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>Golang 安装指南 | VuePress</title><meta name="description" content="My first VuePress Site">
+    <link rel="stylesheet" href="/hb/assets/css/styles.8ac69efd.css">
+    <link rel="preload" href="/hb/assets/js/runtime~app.e74904c5.js" as="script"><link rel="preload" href="/hb/assets/css/styles.8ac69efd.css" as="style"><link rel="preload" href="/hb/assets/js/768.a0ded089.js" as="script"><link rel="preload" href="/hb/assets/js/app.c5cbecd8.js" as="script">
+    <link rel="prefetch" href="/hb/assets/js/Net_webapi.html.f4e031c8.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_basics.html.4d749dcd.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_basics.html.ac9e25ef.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_installation.html.ae0d1151.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_installation.html.912543d9.js" as="script"><link rel="prefetch" href="/hb/assets/js/index.html.ed2138ce.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_index.html.4b8e9073.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_index.html.1241bcf5.js" as="script"><link rel="prefetch" href="/hb/assets/js/get-started.html.20a70a0d.js" as="script"><link rel="prefetch" href="/hb/assets/js/404.html.6697cca1.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container no-navbar external-link-icon" vp-container><!--[--><!----><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar" vp-sidebar><!----><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">.NET 文档 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/installation.html" aria-label=".NET 安装指南"><!--[--><!--[--><!--]--><!--]-->.NET 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/basics.html" aria-label=".NET 基础知识"><!--[--><!--[--><!--]--><!--]-->.NET 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/webapi.html" aria-label=".NET WebAPI 示例"><!--[--><!--[--><!--]--><!--]-->.NET WebAPI 示例<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading active collapsible">Golang 文档 <span class="down arrow"></span></p><ul style="" class="vp-sidebar-children"><!--[--><li><a class="route-link route-link-active auto-link vp-sidebar-item" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link route-link-active auto-link vp-sidebar-item active" href="/hb/Goland/installation.html" aria-label="Golang 安装指南"><!--[--><!--[--><!--]--><!--]-->Golang 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/basics.html" aria-label="Golang 基础知识"><!--[--><!--[--><!--]--><!--]-->Golang 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div vp-content><!--[--><!--]--><div><h1 id="golang-安装指南" tabindex="-1"><a class="header-anchor" href="#golang-安装指南"><span>Golang 安装指南</span></a></h1><p>本文档将指导您完成 Golang 的安装过程。</p><h2 id="系统要求" tabindex="-1"><a class="header-anchor" href="#系统要求"><span>系统要求</span></a></h2><p>Go 可以在以下操作系统上运行：</p><ul><li>Windows 7 或更高版本</li><li>macOS 10.11 或更高版本</li><li>Linux 系统，如 Ubuntu、CentOS、Debian 等</li></ul><h2 id="windows-安装步骤" tabindex="-1"><a class="header-anchor" href="#windows-安装步骤"><span>Windows 安装步骤</span></a></h2><ol><li>访问 <a href="https://golang.org/dl/" target="_blank" rel="noopener noreferrer">Go 官方下载页面</a></li><li>下载 Windows 安装包（.msi 文件）</li><li>运行下载的安装包并按照提示进行操作</li><li>完成安装后，打开命令提示符并运行 <code>go version</code> 验证安装</li></ol><h2 id="macos-安装步骤" tabindex="-1"><a class="header-anchor" href="#macos-安装步骤"><span>macOS 安装步骤</span></a></h2><h3 id="使用-homebrew-安装" tabindex="-1"><a class="header-anchor" href="#使用-homebrew-安装"><span>使用 Homebrew 安装</span></a></h3><p>如果您已安装 Homebrew，可以使用以下命令：</p><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code><span class="line">brew <span class="token function">install</span> go</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div></div></div><h3 id="使用安装包安装" tabindex="-1"><a class="header-anchor" href="#使用安装包安装"><span>使用安装包安装</span></a></h3><ol><li>访问 <a href="https://golang.org/dl/" target="_blank" rel="noopener noreferrer">Go 官方下载页面</a></li><li>下载 macOS 安装包（.pkg 文件）</li><li>运行安装包并按照提示进行操作</li><li>完成安装后，打开终端并运行 <code>go version</code> 验证安装</li></ol><h2 id="linux-安装步骤" tabindex="-1"><a class="header-anchor" href="#linux-安装步骤"><span>Linux 安装步骤</span></a></h2><h3 id="ubuntu-debian" tabindex="-1"><a class="header-anchor" href="#ubuntu-debian"><span>Ubuntu/Debian</span></a></h3><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code><span class="line"><span class="token function">sudo</span> <span class="token function">apt</span> update</span>
+<span class="line"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> golang-go</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="centos-rhel" tabindex="-1"><a class="header-anchor" href="#centos-rhel"><span>CentOS/RHEL</span></a></h3><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code><span class="line"><span class="token function">sudo</span> yum <span class="token function">install</span> epel-release</span>
+<span class="line"><span class="token function">sudo</span> yum <span class="token function">install</span> golang</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="设置-gopath" tabindex="-1"><a class="header-anchor" href="#设置-gopath"><span>设置 GOPATH</span></a></h2><p>安装 Go 后，还需要设置 GOPATH 环境变量，它指定了您的 Go 工作区位置：</p><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code><span class="line"><span class="token comment"># Linux/macOS (添加到 ~/.bashrc 或 ~/.zshrc)</span></span>
+<span class="line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOPATH</span><span class="token operator">=</span><span class="token environment constant">$HOME</span>/go</span>
+<span class="line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOPATH</span>/bin</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># Windows (系统环境变量)</span></span>
+<span class="line"><span class="token comment"># GOPATH = C:\Users\YourName\go</span></span>
+<span class="line"><span class="token comment"># 将 %GOPATH%\bin 添加到 PATH</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">Last Updated:: </span><time class="meta-item-info" datetime="2025-05-25T12:42:40.000Z" data-allow-mismatch>5/25/25, 12:42 PM</time></div><div class="vp-meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: 2764136779@qq.com">Bo-Hong</span><!----><!--]--><!--]--></span></div></div></footer><nav class="vp-page-nav" aria-label="page navigation"><a class="route-link route-link-active auto-link prev" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><div class="hint"><span class="arrow left"></span> Prev</div><div class="link"><span class="external-link">Golang 文档</span></div><!--]--></a><a class="route-link auto-link next" href="/hb/Goland/basics.html" aria-label="Golang 基础知识"><!--[--><div class="hint">Next <span class="arrow right"></span></div><div class="link"><span class="external-link">Golang 基础知识</span></div><!--]--></a></nav><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script src="/hb/assets/js/runtime~app.e74904c5.js" defer></script><script src="/hb/assets/js/768.a0ded089.js" defer></script><script src="/hb/assets/js/app.c5cbecd8.js" defer></script>
+  </body>
+</html>

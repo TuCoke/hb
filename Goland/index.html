@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.20" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>Golang 文档 | VuePress</title><meta name="description" content="My first VuePress Site">
+    <link rel="stylesheet" href="/hb/assets/css/styles.8ac69efd.css">
+    <link rel="preload" href="/hb/assets/js/runtime~app.e74904c5.js" as="script"><link rel="preload" href="/hb/assets/css/styles.8ac69efd.css" as="style"><link rel="preload" href="/hb/assets/js/768.a0ded089.js" as="script"><link rel="preload" href="/hb/assets/js/app.c5cbecd8.js" as="script">
+    <link rel="prefetch" href="/hb/assets/js/Net_webapi.html.f4e031c8.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_basics.html.4d749dcd.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_basics.html.ac9e25ef.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_installation.html.ae0d1151.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_installation.html.912543d9.js" as="script"><link rel="prefetch" href="/hb/assets/js/index.html.ed2138ce.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_index.html.4b8e9073.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_index.html.1241bcf5.js" as="script"><link rel="prefetch" href="/hb/assets/js/get-started.html.20a70a0d.js" as="script"><link rel="prefetch" href="/hb/assets/js/404.html.6697cca1.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container no-navbar external-link-icon" vp-container><!--[--><!----><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar" vp-sidebar><!----><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">.NET 文档 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/installation.html" aria-label=".NET 安装指南"><!--[--><!--[--><!--]--><!--]-->.NET 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/basics.html" aria-label=".NET 基础知识"><!--[--><!--[--><!--]--><!--]-->.NET 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/webapi.html" aria-label=".NET WebAPI 示例"><!--[--><!--[--><!--]--><!--]-->.NET WebAPI 示例<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading active collapsible">Golang 文档 <span class="down arrow"></span></p><ul style="" class="vp-sidebar-children"><!--[--><li><a class="route-link route-link-active auto-link vp-sidebar-item active" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/installation.html" aria-label="Golang 安装指南"><!--[--><!--[--><!--]--><!--]-->Golang 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/basics.html" aria-label="Golang 基础知识"><!--[--><!--[--><!--]--><!--]-->Golang 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div vp-content><!--[--><!--]--><div><h1 id="golang-文档" tabindex="-1"><a class="header-anchor" href="#golang-文档"><span>Golang 文档</span></a></h1><p>这里是 Golang 相关文档的首页，您可以在侧边栏中找到所有相关内容。</p><h2 id="简介" tabindex="-1"><a class="header-anchor" href="#简介"><span>简介</span></a></h2><p>Go（又称 Golang）是 Google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。Go 语言专门针对多处理器系统应用程序的编程进行了优化。</p><h2 id="特点" tabindex="-1"><a class="header-anchor" href="#特点"><span>特点</span></a></h2><p>Go 语言的主要特点包括：</p><ul><li>简洁、快速、安全</li><li>并行、有趣、开源</li><li>内存管理、数组安全、编译迅速</li></ul><h2 id="安装指南" tabindex="-1"><a class="header-anchor" href="#安装指南"><span>安装指南</span></a></h2><p>要开始使用 Go，首先需要下载并安装 Go 编程语言工具，然后设置工作环境。</p><h2 id="基本语法" tabindex="-1"><a class="header-anchor" href="#基本语法"><span>基本语法</span></a></h2><p>Go 程序可以由多个标记组成，可以是关键字、标识符、常量、字符串、符号等。</p></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">Last Updated:: </span><time class="meta-item-info" datetime="2025-05-25T12:42:40.000Z" data-allow-mismatch>5/25/25, 12:42 PM</time></div><div class="vp-meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: 2764136779@qq.com">Bo-Hong</span><!----><!--]--><!--]--></span></div></div></footer><nav class="vp-page-nav" aria-label="page navigation"><!----><a class="route-link auto-link next" href="/hb/Goland/installation.html" aria-label="Golang 安装指南"><!--[--><div class="hint">Next <span class="arrow right"></span></div><div class="link"><span class="external-link">Golang 安装指南</span></div><!--]--></a></nav><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script src="/hb/assets/js/runtime~app.e74904c5.js" defer></script><script src="/hb/assets/js/768.a0ded089.js" defer></script><script src="/hb/assets/js/app.c5cbecd8.js" defer></script>
+  </body>
+</html>
