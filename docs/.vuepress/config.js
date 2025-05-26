@@ -1,7 +1,6 @@
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { webpackBundler } from '@vuepress/bundler-webpack'
-import { searchPlugin } from '@vuepress/plugin-search'
 
 export default defineUserConfig({
   // 多语言配置
@@ -19,27 +18,6 @@ export default defineUserConfig({
   },
 
   base: "/hb/",
-
-  // 添加普通搜索插件
-  plugins: [
-    searchPlugin({
-      // 配置项
-      locales: {
-        '/': {
-          placeholder: '搜索文档',
-        },
-        '/en/': {
-          placeholder: 'Search Documentation',
-        },
-      },
-      // 最大搜索结果数
-      maxSuggestions: 10,
-      // 排除首页
-      isSearchable: (page) => page.path !== '/',
-      getExtraFields: () => [],
-      hotKeys: ['s', '/'],
-    }),
-  ],
 
   theme: defaultTheme({
     // GitHub 仓库链接，请替换为您实际的GitHub仓库地址
