@@ -1,0 +1,11 @@
+/* styles.css */
+.navbar {
+    display: flex;
+    justify-content: center;
+    /* 居中对齐 */
+}
+
+.navbar .nav-item {
+    margin: 0 15px;
+    /* 调整导航项之间的间距 */
+}

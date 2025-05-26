@@ -1,0 +1,30 @@
+/* 导航栏居中样式 */
+:root {
+    --navbar-padding-h: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar .navbar-items-wrapper {
+    justify-content: center !important;
+    flex-grow: 1;
+}
+
+.navbar .site-name {
+    display: none;
+    /* 如果想隐藏网站名称，使导航更居中 */
+}
+
+.navbar .toggle-sidebar-button {
+    position: absolute;
+    left: 1rem;
+}
+
+.navbar .can-hide {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

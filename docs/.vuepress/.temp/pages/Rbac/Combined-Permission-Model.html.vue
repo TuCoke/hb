@@ -1,0 +1,244 @@
+<template><div><h1 id="综合权限控制模型设计" tabindex="-1"><a class="header-anchor" href="#综合权限控制模型设计"><span>综合权限控制模型设计</span></a></h1>
+<h2 id="模型概述" tabindex="-1"><a class="header-anchor" href="#模型概述"><span>模型概述</span></a></h2>
+<p>本文档描述了一个综合的权限控制模型，它结合了：</p>
+<ol>
+<li>基于角色的访问控制（RBAC）</li>
+<li>基于属性的访问控制（ABAC）</li>
+<li>数据权限控制</li>
+<li>部门权限控制</li>
+</ol>
+<h2 id="综合数据库设计" tabindex="-1"><a class="header-anchor" href="#综合数据库设计"><span>综合数据库设计</span></a></h2>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">erDiagram</span></span>
+<span class="line">    User <span class="token arrow operator">||--o{</span> UserRole <span class="token operator">:</span> has</span>
+<span class="line">    User <span class="token arrow operator">||--o{</span> UserAttribute <span class="token operator">:</span> has</span>
+<span class="line">    User <span class="token arrow operator">||--o{</span> UserDepartment <span class="token operator">:</span> belongs_to</span>
+<span class="line">    User <span class="token arrow operator">||--o{</span> DataPermission <span class="token operator">:</span> has</span>
+<span class="line">    </span>
+<span class="line">    Role <span class="token arrow operator">||--o{</span> UserRole <span class="token operator">:</span> assigned_to</span>
+<span class="line">    Role <span class="token arrow operator">||--o{</span> RolePermission <span class="token operator">:</span> has</span>
+<span class="line">    Role <span class="token arrow operator">||--o{</span> RolePolicy <span class="token operator">:</span> has</span>
+<span class="line">    </span>
+<span class="line">    Department <span class="token arrow operator">||--o{</span> UserDepartment <span class="token operator">:</span> contains</span>
+<span class="line">    Department <span class="token arrow operator">||--o{</span> DepartmentPolicy <span class="token operator">:</span> has</span>
+<span class="line">    Department <span class="token arrow operator">||--o{</span> DataPermission <span class="token operator">:</span> controls</span>
+<span class="line">    </span>
+<span class="line">    Resource <span class="token arrow operator">||--o{</span> ResourceAttribute <span class="token operator">:</span> has</span>
+<span class="line">    Resource <span class="token arrow operator">||--o{</span> Permission <span class="token operator">:</span> controls</span>
+<span class="line">    Resource <span class="token arrow operator">||--o{</span> DataPermission <span class="token operator">:</span> protected_by</span>
+<span class="line">    </span>
+<span class="line">    Policy <span class="token arrow operator">||--o{</span> RolePolicy <span class="token operator">:</span> used_in</span>
+<span class="line">    Policy <span class="token arrow operator">||--o{</span> DepartmentPolicy <span class="token operator">:</span> used_in</span>
+<span class="line">    Policy <span class="token arrow operator">||--o{</span> PolicyRule <span class="token operator">:</span> contains</span>
+<span class="line">    </span>
+<span class="line">    User <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string username</span>
+<span class="line">        string password</span>
+<span class="line">        string email</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    Role <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string name</span>
+<span class="line">        string description</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    Department <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string name</span>
+<span class="line">        int parent_id FK</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    Resource <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string name</span>
+<span class="line">        string type</span>
+<span class="line">        string description</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    Permission <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string name</span>
+<span class="line">        string description</span>
+<span class="line">        int resource_id FK</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    Policy <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        string name</span>
+<span class="line">        string description</span>
+<span class="line">        boolean enabled</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    DataPermission <span class="token punctuation">{</span></span>
+<span class="line">        int id PK</span>
+<span class="line">        int user_id FK</span>
+<span class="line">        int department_id FK</span>
+<span class="line">        int resource_id FK</span>
+<span class="line">        string permission_type</span>
+<span class="line">        string scope</span>
+<span class="line">        datetime created_at</span>
+<span class="line">        datetime updated_at</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="权限控制流程" tabindex="-1"><a class="header-anchor" href="#权限控制流程"><span>权限控制流程</span></a></h2>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">graph</span> TD</span>
+<span class="line">    A<span class="token text string">[用户请求]</span> <span class="token arrow operator">--></span> B<span class="token text string">[身份认证]</span></span>
+<span class="line">    B <span class="token arrow operator">--></span> C<span class="token text string">[获取用户信息]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> D<span class="token text string">[获取角色权限]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> E<span class="token text string">[获取部门权限]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> F<span class="token text string">[获取数据权限]</span></span>
+<span class="line">    D <span class="token arrow operator">--></span> G<span class="token text string">[合并权限]</span></span>
+<span class="line">    E <span class="token arrow operator">--></span> G</span>
+<span class="line">    F <span class="token arrow operator">--></span> G</span>
+<span class="line">    G <span class="token arrow operator">--></span> H<span class="token text string">[应用ABAC策略]</span></span>
+<span class="line">    H <span class="token arrow operator">--></span> I<span class="token text string">{权限决策}</span></span>
+<span class="line">    I <span class="token arrow operator">--></span><span class="token label property">|允许|</span> J<span class="token text string">[执行操作]</span></span>
+<span class="line">    I <span class="token arrow operator">--></span><span class="token label property">|拒绝|</span> K<span class="token text string">[拒绝访问]</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="数据权限控制" tabindex="-1"><a class="header-anchor" href="#数据权限控制"><span>数据权限控制</span></a></h2>
+<h3 id="_1-数据权限类型" tabindex="-1"><a class="header-anchor" href="#_1-数据权限类型"><span>1. 数据权限类型</span></a></h3>
+<ul>
+<li>全部数据权限</li>
+<li>部门数据权限</li>
+<li>部门及以下数据权限</li>
+<li>仅本人数据权限</li>
+<li>自定义数据权限</li>
+</ul>
+<h3 id="_2-数据权限实现" tabindex="-1"><a class="header-anchor" href="#_2-数据权限实现"><span>2. 数据权限实现</span></a></h3>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">graph</span> TD</span>
+<span class="line">    A<span class="token text string">[数据访问请求]</span> <span class="token arrow operator">--></span> B<span class="token text string">{检查数据权限}</span></span>
+<span class="line">    B <span class="token arrow operator">--></span> C<span class="token text string">{全部数据权限?}</span></span>
+<span class="line">    C <span class="token arrow operator">--></span><span class="token label property">|是|</span> D<span class="token text string">[允许访问]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span><span class="token label property">|否|</span> E<span class="token text string">{部门数据权限?}</span></span>
+<span class="line">    E <span class="token arrow operator">--></span><span class="token label property">|是|</span> F<span class="token text string">[检查部门]</span></span>
+<span class="line">    E <span class="token arrow operator">--></span><span class="token label property">|否|</span> G<span class="token text string">{个人数据权限?}</span></span>
+<span class="line">    F <span class="token arrow operator">--></span> H<span class="token text string">{部门匹配?}</span></span>
+<span class="line">    H <span class="token arrow operator">--></span><span class="token label property">|是|</span> D</span>
+<span class="line">    H <span class="token arrow operator">--></span><span class="token label property">|否|</span> I<span class="token text string">[拒绝访问]</span></span>
+<span class="line">    G <span class="token arrow operator">--></span> J<span class="token text string">{用户匹配?}</span></span>
+<span class="line">    J <span class="token arrow operator">--></span><span class="token label property">|是|</span> D</span>
+<span class="line">    J <span class="token arrow operator">--></span><span class="token label property">|否|</span> I</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="部门权限控制" tabindex="-1"><a class="header-anchor" href="#部门权限控制"><span>部门权限控制</span></a></h2>
+<h3 id="_1-部门树结构" tabindex="-1"><a class="header-anchor" href="#_1-部门树结构"><span>1. 部门树结构</span></a></h3>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">graph</span> TD</span>
+<span class="line">    A<span class="token text string">[总公司]</span> <span class="token arrow operator">--></span> B<span class="token text string">[技术部]</span></span>
+<span class="line">    A <span class="token arrow operator">--></span> C<span class="token text string">[市场部]</span></span>
+<span class="line">    A <span class="token arrow operator">--></span> D<span class="token text string">[财务部]</span></span>
+<span class="line">    B <span class="token arrow operator">--></span> E<span class="token text string">[开发组]</span></span>
+<span class="line">    B <span class="token arrow operator">--></span> F<span class="token text string">[测试组]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> G<span class="token text string">[销售组]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> H<span class="token text string">[市场组]</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_2-部门权限继承" tabindex="-1"><a class="header-anchor" href="#_2-部门权限继承"><span>2. 部门权限继承</span></a></h3>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">graph</span> TD</span>
+<span class="line">    A<span class="token text string">[上级部门权限]</span> <span class="token arrow operator">--></span> B<span class="token text string">[下级部门继承]</span></span>
+<span class="line">    B <span class="token arrow operator">--></span> C<span class="token text string">[部门成员继承]</span></span>
+<span class="line">    C <span class="token arrow operator">--></span> D<span class="token text string">[最终权限]</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="实现示例" tabindex="-1"><a class="header-anchor" href="#实现示例"><span>实现示例</span></a></h2>
+<h3 id="_1-创建用户并分配角色和部门" tabindex="-1"><a class="header-anchor" href="#_1-创建用户并分配角色和部门"><span>1. 创建用户并分配角色和部门</span></a></h3>
+<div class="language-sql line-numbers-mode" data-highlighter="prismjs" data-ext="sql"><pre v-pre><code><span class="line"><span class="token comment">-- 创建用户</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> users <span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">,</span> email<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'john.doe'</span><span class="token punctuation">,</span> <span class="token string">'hashed_password'</span><span class="token punctuation">,</span> <span class="token string">'john@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">-- 分配角色</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> user_roles <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> role_id<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">-- 分配部门</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> user_departments <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> department_id<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_2-设置数据权限" tabindex="-1"><a class="header-anchor" href="#_2-设置数据权限"><span>2. 设置数据权限</span></a></h3>
+<div class="language-sql line-numbers-mode" data-highlighter="prismjs" data-ext="sql"><pre v-pre><code><span class="line"><span class="token comment">-- 设置部门数据权限</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> data_permissions <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> department_id<span class="token punctuation">,</span> resource_id<span class="token punctuation">,</span> permission_type<span class="token punctuation">,</span> scope<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'read'</span><span class="token punctuation">,</span> <span class="token string">'department'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">-- 设置个人数据权限</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> data_permissions <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> resource_id<span class="token punctuation">,</span> permission_type<span class="token punctuation">,</span> scope<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'write'</span><span class="token punctuation">,</span> <span class="token string">'personal'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_3-定义访问策略" tabindex="-1"><a class="header-anchor" href="#_3-定义访问策略"><span>3. 定义访问策略</span></a></h3>
+<div class="language-sql line-numbers-mode" data-highlighter="prismjs" data-ext="sql"><pre v-pre><code><span class="line"><span class="token comment">-- 创建策略</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> policies <span class="token punctuation">(</span>name<span class="token punctuation">,</span> description<span class="token punctuation">,</span> enabled<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'department_data_access'</span><span class="token punctuation">,</span> <span class="token string">'部门数据访问策略'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">-- 添加策略规则</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> policy_rules <span class="token punctuation">(</span>policy_id<span class="token punctuation">,</span> effect<span class="token punctuation">,</span> priority<span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'allow'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">-- 设置条件</span></span>
+<span class="line"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> conditions <span class="token punctuation">(</span>rule_id<span class="token punctuation">,</span> attribute_name<span class="token punctuation">,</span> operator<span class="token punctuation">,</span> <span class="token keyword">value</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'user.department'</span><span class="token punctuation">,</span> <span class="token string">'equals'</span><span class="token punctuation">,</span> <span class="token string">'IT'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="最佳实践" tabindex="-1"><a class="header-anchor" href="#最佳实践"><span>最佳实践</span></a></h2>
+<ol>
+<li>
+<p><strong>权限分层设计</strong></p>
+<ul>
+<li>基础权限（RBAC）</li>
+<li>细粒度权限（ABAC）</li>
+<li>数据权限</li>
+<li>部门权限</li>
+</ul>
+</li>
+<li>
+<p><strong>权限缓存策略</strong></p>
+<ul>
+<li>缓存用户角色</li>
+<li>缓存部门权限</li>
+<li>缓存数据权限</li>
+<li>定期更新缓存</li>
+</ul>
+</li>
+<li>
+<p><strong>权限审计</strong></p>
+<ul>
+<li>记录权限变更</li>
+<li>记录访问日志</li>
+<li>定期权限审查</li>
+<li>异常访问监控</li>
+</ul>
+</li>
+<li>
+<p><strong>性能优化</strong></p>
+<ul>
+<li>使用权限缓存</li>
+<li>优化权限查询</li>
+<li>批量权限检查</li>
+<li>异步权限验证</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结"><span>总结</span></a></h2>
+<p>综合权限控制模型通过结合多种权限控制机制，提供了：</p>
+<ol>
+<li>灵活的角色管理</li>
+<li>细粒度的属性控制</li>
+<li>精确的数据权限</li>
+<li>清晰的部门权限</li>
+</ol>
+<p>这种模型特别适合：</p>
+<ul>
+<li>大型企业应用</li>
+<li>多租户系统</li>
+<li>需要细粒度控制的场景</li>
+<li>复杂的组织架构</li>
+</ul>
+</div></template>
+
+
