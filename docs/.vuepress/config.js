@@ -69,7 +69,7 @@ export default defineUserConfig({
             children: [
               {
                 text: '鱼鱼助手',
-                link: '/other/',
+                link: '/other/auto/',
               },
             ]
           },
