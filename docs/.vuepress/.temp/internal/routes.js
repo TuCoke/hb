@@ -11,12 +11,13 @@ export const routes = Object.fromEntries([
   ["/Net/installation.html", { loader: () => import(/* webpackChunkName: "Net_installation.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Net/installation.html.js"), meta: {"title":".NET 安装指南"} }],
   ["/Net/", { loader: () => import(/* webpackChunkName: "Net_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Net/index.html.js"), meta: {"title":".NET 文档"} }],
   ["/Net/webapi.html", { loader: () => import(/* webpackChunkName: "Net_webapi.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Net/webapi.html.js"), meta: {"title":".NET WebAPI 示例"} }],
-  ["/other/", { loader: () => import(/* webpackChunkName: "other_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/other/index.html.js"), meta: {"title":"闲鱼自动化工具"} }],
+  ["/other/", { loader: () => import(/* webpackChunkName: "other_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/other/index.html.js"), meta: {"title":"demo"} }],
   ["/Rbac/ABAC.html", { loader: () => import(/* webpackChunkName: "Rbac_ABAC.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Rbac/ABAC.html.js"), meta: {"title":"深入浅出ABAC权限设计"} }],
   ["/Rbac/Combined-Permission-Model.html", { loader: () => import(/* webpackChunkName: "Rbac_Combined-Permission-Model.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Rbac/Combined-Permission-Model.html.js"), meta: {"title":"综合权限控制模型设计"} }],
   ["/Rbac/RBAC-XMind-Structure.html", { loader: () => import(/* webpackChunkName: "Rbac_RBAC-XMind-Structure.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Rbac/RBAC-XMind-Structure.html.js"), meta: {"title":"RBAC权限模型XMind结构图"} }],
   ["/Rbac/", { loader: () => import(/* webpackChunkName: "Rbac_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/Rbac/index.html.js"), meta: {"title":"深入浅出RBAC权限设计"} }],
   ["/en/Net/", { loader: () => import(/* webpackChunkName: "en_Net_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/en/Net/index.html.js"), meta: {"title":".NET Documentation"} }],
+  ["/other/auto/", { loader: () => import(/* webpackChunkName: "other_auto_index.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/other/auto/index.html.js"), meta: {"title":"🎯闲鱼自动化工具"} }],
   ["/404.html", { loader: () => import(/* webpackChunkName: "404.html" */"E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/404.html.js"), meta: {"title":""} }],
 ]);
 
