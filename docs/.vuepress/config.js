@@ -21,9 +21,9 @@ export default defineUserConfig({
 
   theme: defaultTheme({
     // GitHub 仓库链接，请替换为您实际的GitHub仓库地址
-    repo: 'https://gitee.com/Lovely_Rabbit',
+    repo: 'https://github.com/TuCoke/hb/tree/main',
     // 自定义仓库链接文字
-    repoLabel: 'Gitee',
+    repoLabel: 'GitHub',
 
     // 是否显示编辑链接
     editLink: true,
@@ -43,6 +43,15 @@ export default defineUserConfig({
         contributorsText: '贡献者',
 
         navbar: [
+          {
+            text: 'Gitee地址',
+            children: [
+              {
+                text: 'Gitee地址',
+                link: 'https://gitee.com/Lovely_Rabbit',
+              },
+            ]
+          },
           {
             text: '文档',
             children: [
@@ -69,6 +78,7 @@ export default defineUserConfig({
               },
             ]
           },
+          
         ],
         sidebar: [
           {
