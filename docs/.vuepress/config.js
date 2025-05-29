@@ -21,9 +21,9 @@ export default defineUserConfig({
 
   theme: defaultTheme({
     // GitHub 仓库链接，请替换为您实际的GitHub仓库地址
-    repo: 'yourusername/your-repo-name',
+    repo: 'https://gitee.com/Lovely_Rabbit',
     // 自定义仓库链接文字
-    repoLabel: 'GitHub',
+    repoLabel: 'Gitee',
 
     // 是否显示编辑链接
     editLink: true,
