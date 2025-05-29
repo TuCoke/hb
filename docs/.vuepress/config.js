@@ -45,12 +45,7 @@ export default defineUserConfig({
         navbar: [
           {
             text: 'Gitee地址',
-            children: [
-              {
-                text: 'Gitee地址',
-                link: 'https://gitee.com/Lovely_Rabbit',
-              },
-            ]
+            link: 'https://gitee.com/Lovely_Rabbit',
           },
           {
             text: '文档',
