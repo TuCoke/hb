@@ -9,7 +9,7 @@
 
 
 ## 云盘搜索
-- 使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ
+- 使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ(暂时取消)
 - 
 
 
