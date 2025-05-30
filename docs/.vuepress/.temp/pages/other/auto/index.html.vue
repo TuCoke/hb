@@ -1,4 +1,17 @@
 <template><div><h1 id="🎯闲鱼自动化工具" tabindex="-1"><a class="header-anchor" href="#🎯闲鱼自动化工具"><span>🎯闲鱼自动化工具</span></a></h1>
+<h2 id="🚀鱼鱼助手" tabindex="-1"><a class="header-anchor" href="#🚀鱼鱼助手"><span>🚀鱼鱼助手</span></a></h2>
+<ul>
+<li>使用NET8、Mysql、Hangfire、redis</li>
+<li>客户端使用autojs 7.0.1版本 、自动化脚本 使用在安卓端</li>
+<li>使用 vol 框架 开源版本 、（增加了一部分代码、中间件多级缓存、signlar 分组发送）</li>
+</ul>
+<h3 id="📋-项目概述" tabindex="-1"><a class="header-anchor" href="#📋-项目概述"><span>📋 项目概述</span></a></h3>
+<ol>
+<li>🛠️ 本项目是一个基于 Net8 开发的后端服务，Autojs为客户端（安卓端）的自动化上货工具</li>
+<li>⚡ 使用vue3 开发后台商品管理、通过🌐websocket 连接设备（客户端）、进行下发脚本命令 执行自动化发布商品，支持1-N 台设备批量下发脚本命令（云控功能）。</li>
+<li>🔧 通过后台管理功能 对商品进行管理 统一设置价格 库存 等功能，实现一个地方维护 多台手机使用、多台APP使用（例如我有一个衣服的商品、现在需要发布到 某鱼、转转、小HS 等app） 只需要新建商品后、然后（🌐通过websocket连接后）发布到不同平台执行，就可对应多个app 进行发布功能</li>
+</ol>
+<h3 id="🎯-功能介绍" tabindex="-1"><a class="header-anchor" href="#🎯-功能介绍"><span>🎯 功能介绍</span></a></h3>
 <ul>
 <li>✅ <strong>兼容性强</strong> - 支持全系列手机,安卓7.0以上免Root - 支持Android 7.0+和主流手机品牌</li>
 <li>✅ .PC端为SPA应用，支持Windows、Mac</li>

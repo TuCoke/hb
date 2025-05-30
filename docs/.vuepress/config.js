@@ -65,7 +65,7 @@ export default defineUserConfig({
             ]
           },
           {
-            text: '项目集合',
+            text: 'Demo集合',
             children: [
               {
                 text: '鱼鱼助手',
@@ -73,7 +73,7 @@ export default defineUserConfig({
               },
             ]
           },
-          
+
         ],
         sidebar: [
           {
@@ -106,10 +106,17 @@ export default defineUserConfig({
             ]
           },
           {
-            text: '作品',
+            text: 'Demo合集',
             collapsible: true,
             children: [
-              '/other/',
+              {
+                text: '云盘搜索',
+                link: '/other/yupan/',
+              },
+              {
+                text: '鱼鱼助手',
+                link: '/other/auto/',
+              }
             ]
           }
         ],
