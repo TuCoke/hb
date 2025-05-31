@@ -2,8 +2,9 @@
 
 
 ## 🚀 云盘搜索
-- 使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ(暂时取消)
--  [爬虫框架https://github.com/hu17889/go_spider](https://github.com/hu17889/go_spider) 
+- 1️⃣使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ(暂时取消)
+- 2️⃣ [爬虫框架https://github.com/hu17889/go_spider](https://github.com/hu17889/go_spider) 
+- 3️⃣地址 [项目地址：https://yuyu.api-y.cn/](https://yuyu.api-y.cn)
 
 
 ## 📋 项目概述
