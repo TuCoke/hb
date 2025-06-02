@@ -1,9 +1,11 @@
 <template><div><h1 id="🎯闲鱼自动化工具" tabindex="-1"><a class="header-anchor" href="#🎯闲鱼自动化工具"><span>🎯闲鱼自动化工具</span></a></h1>
 <h2 id="🚀鱼鱼助手" tabindex="-1"><a class="header-anchor" href="#🚀鱼鱼助手"><span>🚀鱼鱼助手</span></a></h2>
 <ul>
-<li>使用NET8、Mysql、Hangfire、redis</li>
-<li>客户端使用autojs 7.0.1版本 、自动化脚本 使用在安卓端</li>
-<li>使用 vol 框架 开源版本 、（增加了一部分代码、中间件多级缓存、signlar 分组发送）</li>
+<li>1️⃣使用NET8、Mysql、Hangfire、redis</li>
+<li>2️⃣客户端使用autojs 7.0.1版本 、自动化脚本 使用在安卓端</li>
+<li>3️⃣使用 vol 框架 开源版本 、（增加了一部分代码、中间件多级缓存、signlar 分组发送）</li>
+<li>4️⃣后台管理使用 vue3 + element-plus</li>
+<li>5️⃣地址 <a href="https://api-y.cn" target="_blank" rel="noopener noreferrer">项目地址：https://api-y.cn</a></li>
 </ul>
 <h3 id="📋-项目概述" tabindex="-1"><a class="header-anchor" href="#📋-项目概述"><span>📋 项目概述</span></a></h3>
 <ol>
@@ -20,15 +22,55 @@
 <li>✅ 支持XHS、闲鱼热搜 一键采集采集商品、自动转换md5码 自动发布功能</li>
 <li>✅ 支持微信验证码零时登录、自动登录</li>
 </ul>
+<h3 id="📌-项目优化版本更新新日志" tabindex="-1"><a class="header-anchor" href="#📌-项目优化版本更新新日志"><span>📌 项目优化版本更新新日志</span></a></h3>
+<blockquote>
+<h4 id="系统每周都会有数次更新-更新会整合一段时间后、统一发布" tabindex="-1"><a class="header-anchor" href="#系统每周都会有数次更新-更新会整合一段时间后、统一发布"><span>- 系统每周都会有数次更新，更新会整合一段时间后、统一发布</span></a></h4>
+</blockquote>
+<blockquote>
+<p>2025-05-31</p>
+</blockquote>
+<ul>
+<li>✅ 优化了Ui界面卡顿功能、修复安卓不同版本-的添加水印问题 (使用Java包android.graphics)</li>
+<li>✅ 修复悬浮日志不同脚本不显示bug</li>
+<li>✅ 修复websocket 手机关闭断开bug、（手机锁屏、再次打开不会重连bug）</li>
+<li>✅ 新增发布商品地址池功能（发布商品可以指定地区）、新增多种键盘广播（解决留言不能输入文字功能）</li>
+</ul>
+<blockquote>
+<p>2025-01-30</p>
+</blockquote>
+<ul>
+<li>完善了权限检测、不同安卓版本查找控件</li>
+<li>多处细节优化 （主要测试各个不同安卓版本、不同手机型号bug问题）</li>
+<li>新增图片MD5 码 （多台手机为不同图片md5码）</li>
+</ul>
+<blockquote>
+<p>2024-12-10</p>
+</blockquote>
+<ul>
+<li>✅ 增加了复制宝贝功能、任务队列、任务重试功能</li>
+<li>✅ 增加图色查找控件、增加发布商品、存草稿功能</li>
+<li>✅ 增加app热更新功能、远程调试功能</li>
+<li>✅ 不同安卓版本图色查找功能、新增yolo v5模型，支持图片识别，提高识别速度(识别图片、返回点位、)</li>
+<li>❌ 增加自动发货功能、（目前不太稳定、暂时关闭了）</li>
+</ul>
+<blockquote>
+<p>2024-11-21</p>
+</blockquote>
+<ul>
+<li>✅ webSocket 支持多台设备同时发布、云控功能</li>
+<li>✅ 控件查找函数封装、远程下载图片到相册、悬浮窗口日志显示</li>
+<li>✅ 上下架商品、任务队列重试</li>
+</ul>
 <h3 id="待开发功能" tabindex="-1"><a class="header-anchor" href="#待开发功能"><span>待开发功能</span></a></h3>
 <h4 id="产品编辑" tabindex="-1"><a class="header-anchor" href="#产品编辑"><span>产品编辑</span></a></h4>
 <ul>
-<li>❌ 商品宝贝地址池 (发布商品勾选发布位置,根据地址池可以随机地址) - 发布商品的时候可以勾选 或者 商品编辑的时候可以勾选地址池</li>
+<li>✅ 商品宝贝地址池 (发布商品勾选发布位置,根据地址池可以随机地址) - 发布商品的时候可以勾选 或者 商品编辑的时候可以勾选地址池</li>
 <li>❌宝贝水印自定义功能 (通过界面配置 添加文字水印等功能)</li>
 <li>❌宝贝描述池功能 (app 发布具有描述功能)</li>
 <li>❌宝贝标签池 (某鱼商品发布双击可以添加标签)</li>
 <li>❌房屋出租功能</li>
 <li>❌免费送宝贝发布功能</li>
+<li>❌某鱼养号 - （翻动次数、点击概率、想要率、私信内容、收藏率、留言率、留言内容）</li>
 </ul>
 <h4 id="商品管理" tabindex="-1"><a class="header-anchor" href="#商品管理"><span>商品管理</span></a></h4>
 <ul>

@@ -1,7 +1,8 @@
 <template><div><h2 id="🚀-云盘搜索" tabindex="-1"><a class="header-anchor" href="#🚀-云盘搜索"><span>🚀 云盘搜索</span></a></h2>
 <ul>
-<li>使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ(暂时取消)</li>
-<li><a href="https://github.com/hu17889/go_spider" target="_blank" rel="noopener noreferrer">爬虫框架https://github.com/hu17889/go_spider</a></li>
+<li>1️⃣使用NET8、Mysql、Elasticsearch、Hangfire、redis、Mediator中介者、RabbitMQ(暂时取消)</li>
+<li>2️⃣ <a href="https://github.com/hu17889/go_spider" target="_blank" rel="noopener noreferrer">爬虫框架https://github.com/hu17889/go_spider</a></li>
+<li>3️⃣地址 <a href="https://yuyu.api-y.cn" target="_blank" rel="noopener noreferrer">项目地址：https://yuyu.api-y.cn/</a></li>
 </ul>
 <h2 id="📋-项目概述" tabindex="-1"><a class="header-anchor" href="#📋-项目概述"><span>📋 项目概述</span></a></h2>
 <blockquote>
