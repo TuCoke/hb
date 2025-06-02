@@ -111,7 +111,7 @@
 <li>📈 &quot;如何提高闲鱼商品曝光&quot;</li>
 </ul>
 </blockquote>
-<h3 id="_2-👥-kol合作计划" tabindex="-1"><a class="header-anchor" href="#_2-👥-kol合作计划"><span>2. 👥 KOL合作计划</span></a></h3>
+<h3 id="_2-👥-kol合作计划-核心" tabindex="-1"><a class="header-anchor" href="#_2-👥-kol合作计划-核心"><span>2. 👥 KOL合作计划 （核心）</span></a></h3>
 <ul>
 <li>[ ] 🔍 寻找3-5个闲鱼相关KOL （如何推广 和沟通）
 <ul>
