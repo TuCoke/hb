@@ -116,6 +116,10 @@ export default defineUserConfig({
               {
                 text: '鱼鱼助手',
                 link: '/other/auto/',
+              },
+              {
+                text: '鱼鱼助手运营方案简化版v1',
+                link: '/other/auto/yu',
               }
             ]
           }
