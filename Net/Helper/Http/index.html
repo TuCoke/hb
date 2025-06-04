@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.20" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>VuePress</title><meta name="description" content="技术文档中心">
+    <link rel="stylesheet" href="/hb/assets/css/styles.8ac69efd.css">
+    <link rel="preload" href="/hb/assets/js/runtime~app.c9d35812.js" as="script"><link rel="preload" href="/hb/assets/css/styles.8ac69efd.css" as="style"><link rel="preload" href="/hb/assets/js/768.4c07e629.js" as="script"><link rel="preload" href="/hb/assets/js/app.508e9485.js" as="script">
+    <link rel="prefetch" href="/hb/assets/js/Net_webapi.html.c95e5e35.js" as="script"><link rel="prefetch" href="/hb/assets/js/Rbac_RBAC-XMind-Structure.html.dddbb6ee.js" as="script"><link rel="prefetch" href="/hb/assets/js/Rbac_Combined-Permission-Model.html.26e46e13.js" as="script"><link rel="prefetch" href="/hb/assets/js/Rbac_ABAC.html.3f6ff894.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_Helper_Http_index.html.bd4f4287.js" as="script"><link rel="prefetch" href="/hb/assets/js/Rbac_index.html.1714fa9d.js" as="script"><link rel="prefetch" href="/hb/assets/js/other_yupan_index.html.ef114d41.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_basics.html.61bc6281.js" as="script"><link rel="prefetch" href="/hb/assets/js/other_auto_yu.html.4586d201.js" as="script"><link rel="prefetch" href="/hb/assets/js/other_auto_index.html.39a395e8.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_basics.html.f2c00f56.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_installation.html.71708a9d.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_installation.html.cdb7bf48.js" as="script"><link rel="prefetch" href="/hb/assets/js/other_index.html.e2e3cf0d.js" as="script"><link rel="prefetch" href="/hb/assets/js/en_index.html.f0dc2252.js" as="script"><link rel="prefetch" href="/hb/assets/js/index.html.663f7d59.js" as="script"><link rel="prefetch" href="/hb/assets/js/Goland_index.html.0f588586.js" as="script"><link rel="prefetch" href="/hb/assets/js/en_Net_index.html.80147b75.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_index.html.a6bb222a.js" as="script"><link rel="prefetch" href="/hb/assets/js/Net_Helper_index.html.cc177e95.js" as="script"><link rel="prefetch" href="/hb/assets/js/get-started.html.cc1d6a6f.js" as="script"><link rel="prefetch" href="/hb/assets/js/404.html.5bcd1735.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container external-link-icon" vp-container><!--[--><header class="vp-navbar" vp-navbar><div class="vp-toggle-sidebar-button" title="toggle sidebar" aria-expanded="false" role="button" tabindex="0"><div class="icon" aria-hidden="true"><span></span><span></span><span></span></div></div><span><a class="route-link" href="/hb/"><img class="vp-site-logo" src="https://vuejs.press/images/hero.png" alt="VuePress"><span class="vp-site-name vp-hide-mobile" aria-hidden="true">VuePress</span></a></span><div class="vp-navbar-items-wrapper" style=""><!--[--><!--]--><nav class="vp-navbar-items vp-hide-mobile" aria-label="site navigation"><!--[--><div class="vp-navbar-item"><a class="auto-link external-link" href="https://gitee.com/Lovely_Rabbit" aria-label="Gitee地址" rel="noopener noreferrer" target="_blank"><!--[--><!--[--><!--]--><!--]-->Gitee地址<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="文档"><span class="title">文档</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="文档"><span class="title">文档</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link route-link-active auto-link" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/Rbac/" aria-label="RBAC 权限设计"><!--[--><!--[--><!--]--><!--]-->RBAC 权限设计<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="Demo集合"><span class="title">Demo集合</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="Demo集合"><span class="title">Demo集合</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/other/auto/" aria-label="鱼鱼助手"><!--[--><!--[--><!--]--><!--]-->鱼鱼助手<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="Select language"><span class="title">选择语言</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="Select language"><span class="title">选择语言</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link route-link-active auto-link" href="/hb/Net/Helper/Http/" aria-label="简体中文"><!--[--><!--[--><!--]--><!--]-->简体中文<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/en/" aria-label="English"><!--[--><!--[--><!--]--><!--]-->English<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><a class="auto-link external-link" href="https://github.com/TuCoke/hb/tree/main" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><!--[--><!--[--><!--]--><!--]-->GitHub<!--[--><!--[--><!--]--><!--]--></a></div><!--]--></nav><!--[--><!--]--><button type="button" class="vp-toggle-color-mode-button" title="toggle color mode"><svg class="light-icon" viewbox="0 0 32 32" style=""><path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path><path d="M5.394 6.813l1.414-1.415l3.506 3.506L8.9 10.318z" fill="currentColor"></path><path d="M2 15.005h5v2H2z" fill="currentColor"></path><path d="M5.394 25.197L8.9 21.691l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 25.005h2v5h-2z" fill="currentColor"></path><path d="M21.687 23.106l1.414-1.415l3.506 3.506l-1.414 1.414z" fill="currentColor"></path><path d="M25 15.005h5v2h-5z" fill="currentColor"></path><path d="M21.687 8.904l3.506-3.506l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 2.005h2v5h-2z" fill="currentColor"></path></svg><svg class="dark-icon" viewbox="0 0 32 32" style="display:none;"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3z" fill="currentColor"></path></svg></button><!----></div></header><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar" vp-sidebar><nav class="vp-navbar-items" aria-label="site navigation"><!--[--><div class="vp-navbar-item"><a class="auto-link external-link" href="https://gitee.com/Lovely_Rabbit" aria-label="Gitee地址" rel="noopener noreferrer" target="_blank"><!--[--><!--[--><!--]--><!--]-->Gitee地址<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="文档"><span class="title">文档</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="文档"><span class="title">文档</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link route-link-active auto-link" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/Rbac/" aria-label="RBAC 权限设计"><!--[--><!--[--><!--]--><!--]-->RBAC 权限设计<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="Demo集合"><span class="title">Demo集合</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="Demo集合"><span class="title">Demo集合</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/other/auto/" aria-label="鱼鱼助手"><!--[--><!--[--><!--]--><!--]-->鱼鱼助手<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><div class="vp-navbar-dropdown-wrapper"><button class="vp-navbar-dropdown-title" type="button" aria-label="Select language"><span class="title">选择语言</span><span class="arrow down"></span></button><button class="vp-navbar-dropdown-title-mobile" type="button" aria-label="Select language"><span class="title">选择语言</span><span class="right arrow"></span></button><ul style="display:none;" class="vp-navbar-dropdown"><!--[--><li class="vp-navbar-dropdown-item"><a class="route-link route-link-active auto-link" href="/hb/Net/Helper/Http/" aria-label="简体中文"><!--[--><!--[--><!--]--><!--]-->简体中文<!--[--><!--[--><!--]--><!--]--></a></li><li class="vp-navbar-dropdown-item"><a class="route-link auto-link" href="/hb/en/" aria-label="English"><!--[--><!--[--><!--]--><!--]-->English<!--[--><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><div class="vp-navbar-item"><a class="auto-link external-link" href="https://github.com/TuCoke/hb/tree/main" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><!--[--><!--[--><!--]--><!--]-->GitHub<!--[--><!--[--><!--]--><!--]--></a></div><!--]--></nav><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">.NET 文档 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link route-link-active auto-link vp-sidebar-item" href="/hb/Net/" aria-label=".NET 文档"><!--[--><!--[--><!--]--><!--]-->.NET 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/installation.html" aria-label=".NET 安装指南"><!--[--><!--[--><!--]--><!--]-->.NET 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/basics.html" aria-label=".NET 基础知识"><!--[--><!--[--><!--]--><!--]-->.NET 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Net/webapi.html" aria-label=".NET WebAPI 示例"><!--[--><!--[--><!--]--><!--]-->.NET WebAPI 示例<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">Golang 文档 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/" aria-label="Golang 文档"><!--[--><!--[--><!--]--><!--]-->Golang 文档<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/installation.html" aria-label="Golang 安装指南"><!--[--><!--[--><!--]--><!--]-->Golang 安装指南<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Goland/basics.html" aria-label="Golang 基础知识"><!--[--><!--[--><!--]--><!--]-->Golang 基础知识<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">RBAC 权限设计 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Rbac/" aria-label="深入浅出RBAC权限设计"><!--[--><!--[--><!--]--><!--]-->深入浅出RBAC权限设计<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Rbac/ABAC.html" aria-label="深入浅出ABAC权限设计"><!--[--><!--[--><!--]--><!--]-->深入浅出ABAC权限设计<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Rbac/Combined-Permission-Model.html" aria-label="综合权限控制模型设计"><!--[--><!--[--><!--]--><!--]-->综合权限控制模型设计<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/Rbac/RBAC-XMind-Structure.html" aria-label="RBAC权限模型XMind结构图"><!--[--><!--[--><!--]--><!--]-->RBAC权限模型XMind结构图<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><li><p tabindex="0" class="vp-sidebar-item vp-sidebar-heading collapsible">Demo合集 <span class="right arrow"></span></p><ul style="display:none;" class="vp-sidebar-children"><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/hb/other/yupan/" aria-label="云盘搜索"><!--[--><!--[--><!--]--><!--]-->云盘搜索<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/hb/other/auto/" aria-label="鱼鱼助手"><!--[--><!--[--><!--]--><!--]-->鱼鱼助手<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div vp-content><!--[--><!--]--><div><h2 id="入参-和-出参" tabindex="-1"><a class="header-anchor" href="#入参-和-出参"><span>入参 和 出参</span></a></h2><div class="language-C# line-numbers-mode" data-highlighter="prismjs" data-ext="C#"><pre><code><span class="line">using Microsoft.Extensions.Logging;</span>
+<span class="line">using Newtonsoft.Json;</span>
+<span class="line">using Polly;</span>
+<span class="line">using Polly.Retry;</span>
+<span class="line">using System;</span>
+<span class="line">using System.Collections.Generic;</span>
+<span class="line">using System.Net;</span>
+<span class="line">using System.Net.Http;</span>
+<span class="line">using System.Text;</span>
+<span class="line">using System.Threading;</span>
+<span class="line">using System.Threading.Tasks;</span>
+<span class="line"></span>
+<span class="line">namespace DA.FileCloudSync.Core.Utilities.ObjRequest</span>
+<span class="line">{</span>
+<span class="line">    /// &lt;summary&gt;</span>
+<span class="line">    /// 增强版HTTP请求客户端</span>
+<span class="line">    /// &lt;/summary&gt;</span>
+<span class="line">    public class ObjRequest2</span>
+<span class="line">    {</span>
+<span class="line">        private readonly ILogger&lt;ObjRequest2&gt; _logger;</span>
+<span class="line">        private readonly HttpClient _httpClient;</span>
+<span class="line">        private readonly RetryPolicy&lt;HttpResponseMessage&gt; _retryPolicy;</span>
+<span class="line">        private readonly int _defaultTimeoutSeconds;</span>
+<span class="line">        private readonly Dictionary&lt;string, string&gt; _defaultHeaders;</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 单例访问器</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public static ObjRequest2 Build(ILogger&lt;ObjRequest2&gt; logger = null)</span>
+<span class="line">        {</span>
+<span class="line">            return new ObjRequest2(logger);</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 构造函数</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        /// &lt;param name=&quot;logger&quot;&gt;日志记录器&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;defaultTimeoutSeconds&quot;&gt;默认超时时间(秒)&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;maxRetryAttempts&quot;&gt;最大重试次数&lt;/param&gt;</span>
+<span class="line">        public ObjRequest2(ILogger&lt;ObjRequest2&gt; logger = null, int defaultTimeoutSeconds = 30, int maxRetryAttempts = 3)</span>
+<span class="line">        {</span>
+<span class="line">            _logger = logger;</span>
+<span class="line">            _defaultTimeoutSeconds = defaultTimeoutSeconds;</span>
+<span class="line">            _httpClient = new HttpClient();</span>
+<span class="line">            _defaultHeaders = new Dictionary&lt;string, string&gt;();</span>
+<span class="line">            </span>
+<span class="line">            // 配置重试策略</span>
+<span class="line">            _retryPolicy = Policy</span>
+<span class="line">                .HandleResult&lt;HttpResponseMessage&gt;(r =&gt; !r.IsSuccessStatusCode &amp;&amp; </span>
+<span class="line">                    r.StatusCode != HttpStatusCode.BadRequest &amp;&amp; </span>
+<span class="line">                    r.StatusCode != HttpStatusCode.Unauthorized &amp;&amp; </span>
+<span class="line">                    r.StatusCode != HttpStatusCode.Forbidden)</span>
+<span class="line">                .WaitAndRetryAsync(</span>
+<span class="line">                    maxRetryAttempts,</span>
+<span class="line">                    retryAttempt =&gt; TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),</span>
+<span class="line">                    onRetry: (outcome, timespan, retryAttempt, context) =&gt;</span>
+<span class="line">                    {</span>
+<span class="line">                        _logger?.LogWarning(</span>
+<span class="line">                            &quot;正在重试请求 (尝试 {RetryAttempt}/{MaxRetries}). &quot; +</span>
+<span class="line">                            &quot;上次请求状态: {StatusCode}, URL: {Url}&quot;,</span>
+<span class="line">                            retryAttempt, maxRetryAttempts, outcome.Result.StatusCode, </span>
+<span class="line">                            outcome.Result.RequestMessage?.RequestUri);</span>
+<span class="line">                    });</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 添加默认请求头</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public ObjRequest2 AddDefaultHeader(string key, string value)</span>
+<span class="line">        {</span>
+<span class="line">            _defaultHeaders[key] = value;</span>
+<span class="line">            return this;</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 设置授权Token</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public ObjRequest2 WithBearerToken(string token)</span>
+<span class="line">        {</span>
+<span class="line">            if (!string.IsNullOrEmpty(token))</span>
+<span class="line">            {</span>
+<span class="line">                AddDefaultHeader(&quot;Authorization&quot;, $&quot;Bearer {token}&quot;);</span>
+<span class="line">            }</span>
+<span class="line">            return this;</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 发送请求并获取指定类型的响应</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        /// &lt;typeparam name=&quot;TResponse&quot;&gt;响应类型&lt;/typeparam&gt;</span>
+<span class="line">        /// &lt;typeparam name=&quot;TRequest&quot;&gt;请求类型&lt;/typeparam&gt;</span>
+<span class="line">        /// &lt;param name=&quot;url&quot;&gt;请求URL&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;method&quot;&gt;HTTP方法&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;request&quot;&gt;请求对象&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;timeoutSeconds&quot;&gt;超时时间(秒)&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;mediaType&quot;&gt;媒体类型&lt;/param&gt;</span>
+<span class="line">        /// &lt;param name=&quot;cancellationToken&quot;&gt;取消令牌&lt;/param&gt;</span>
+<span class="line">        /// &lt;returns&gt;响应对象或异常结果&lt;/returns&gt;</span>
+<span class="line">        public async Task&lt;ApiResult&lt;TResponse&gt;&gt; SendRequestAsync&lt;TResponse, TRequest&gt;(</span>
+<span class="line">            string url,</span>
+<span class="line">            HttpMethod method,</span>
+<span class="line">            TRequest request = default,</span>
+<span class="line">            int? timeoutSeconds = null,</span>
+<span class="line">            string mediaType = &quot;application/json&quot;,</span>
+<span class="line">            CancellationToken cancellationToken = default)</span>
+<span class="line">        {</span>
+<span class="line">            _logger?.LogDebug(&quot;开始请求 {Method} {Url}&quot;, method, url);</span>
+<span class="line">            var startTime = DateTime.Now;</span>
+<span class="line">            var result = new ApiResult&lt;TResponse&gt;();</span>
+<span class="line"></span>
+<span class="line">            try</span>
+<span class="line">            {</span>
+<span class="line">                using (var requestMessage = new HttpRequestMessage(method, url))</span>
+<span class="line">                {</span>
+<span class="line">                    // 设置请求超时</span>
+<span class="line">                    var timeoutTokenSource = new CancellationTokenSource();</span>
+<span class="line">                    timeoutTokenSource.CancelAfter(TimeSpan.FromSeconds(timeoutSeconds ?? _defaultTimeoutSeconds));</span>
+<span class="line">                    </span>
+<span class="line">                    // 合并取消令牌</span>
+<span class="line">                    using (var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(</span>
+<span class="line">                        cancellationToken, timeoutTokenSource.Token))</span>
+<span class="line">                    {</span>
+<span class="line">                        // 添加默认请求头</span>
+<span class="line">                        foreach (var header in _defaultHeaders)</span>
+<span class="line">                        {</span>
+<span class="line">                            requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value);</span>
+<span class="line">                        }</span>
+<span class="line"></span>
+<span class="line">                        // 添加请求体</span>
+<span class="line">                        if ((method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch) &amp;&amp; </span>
+<span class="line">                            request != null)</span>
+<span class="line">                        {</span>
+<span class="line">                            string jsonContent = JsonConvert.SerializeObject(request);</span>
+<span class="line">                            requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8, mediaType);</span>
+<span class="line">                            _logger?.LogTrace(&quot;请求内容: {Content}&quot;, jsonContent);</span>
+<span class="line">                        }</span>
+<span class="line"></span>
+<span class="line">                        // 应用重试策略</span>
+<span class="line">                        var response = await _retryPolicy.ExecuteAsync(async () =&gt;</span>
+<span class="line">                        {</span>
+<span class="line">                            return await _httpClient.SendAsync(</span>
+<span class="line">                                requestMessage, </span>
+<span class="line">                                HttpCompletionOption.ResponseHeadersRead, </span>
+<span class="line">                                linkedTokenSource.Token);</span>
+<span class="line">                        });</span>
+<span class="line"></span>
+<span class="line">                        // 处理响应</span>
+<span class="line">                        result.StatusCode = (int)response.StatusCode;</span>
+<span class="line">                        string responseContent = await response.Content.ReadAsStringAsync();</span>
+<span class="line">                        </span>
+<span class="line">                        if (response.IsSuccessStatusCode)</span>
+<span class="line">                        {</span>
+<span class="line">                            if (!string.IsNullOrEmpty(responseContent))</span>
+<span class="line">                            {</span>
+<span class="line">                                try</span>
+<span class="line">                                {</span>
+<span class="line">                                    result.Data = JsonConvert.DeserializeObject&lt;TResponse&gt;(responseContent);</span>
+<span class="line">                                }</span>
+<span class="line">                                catch (JsonException ex)</span>
+<span class="line">                                {</span>
+<span class="line">                                    _logger?.LogError(ex, &quot;响应反序列化失败: {Error}&quot;, ex.Message);</span>
+<span class="line">                                    result.ErrorMessage = $&quot;响应反序列化失败: {ex.Message}&quot;;</span>
+<span class="line">                                    result.HasError = true;</span>
+<span class="line">                                }</span>
+<span class="line">                            }</span>
+<span class="line">                        }</span>
+<span class="line">                        else</span>
+<span class="line">                        {</span>
+<span class="line">                            result.HasError = true;</span>
+<span class="line">                            result.ErrorMessage = $&quot;HTTP请求失败: {response.StatusCode} - {responseContent}&quot;;</span>
+<span class="line">                            _logger?.LogWarning(&quot;请求失败: {StatusCode} - {Content}&quot;, </span>
+<span class="line">                                response.StatusCode, responseContent);</span>
+<span class="line">                        }</span>
+<span class="line">                    }</span>
+<span class="line">                }</span>
+<span class="line">            }</span>
+<span class="line">            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)</span>
+<span class="line">            {</span>
+<span class="line">                result.HasError = true;</span>
+<span class="line">                result.ErrorMessage = &quot;请求被取消&quot;;</span>
+<span class="line">                _logger?.LogWarning(&quot;请求被取消: {Url}&quot;, url);</span>
+<span class="line">            }</span>
+<span class="line">            catch (OperationCanceledException)</span>
+<span class="line">            {</span>
+<span class="line">                result.HasError = true;</span>
+<span class="line">                result.ErrorMessage = &quot;请求超时&quot;;</span>
+<span class="line">                _logger?.LogWarning(&quot;请求超时: {Url}&quot;, url);</span>
+<span class="line">            }</span>
+<span class="line">            catch (HttpRequestException ex)</span>
+<span class="line">            {</span>
+<span class="line">                result.HasError = true;</span>
+<span class="line">                result.ErrorMessage = $&quot;网络请求异常: {ex.Message}&quot;;</span>
+<span class="line">                _logger?.LogError(ex, &quot;网络请求异常: {Error}&quot;, ex.Message);</span>
+<span class="line">            }</span>
+<span class="line">            catch (Exception ex)</span>
+<span class="line">            {</span>
+<span class="line">                result.HasError = true;</span>
+<span class="line">                result.ErrorMessage = $&quot;请求处理异常: {ex.Message}&quot;;</span>
+<span class="line">                _logger?.LogError(ex, &quot;请求处理异常: {Error}&quot;, ex.Message);</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">            var elapsed = DateTime.Now - startTime;</span>
+<span class="line">            _logger?.LogDebug(&quot;完成请求 {Method} {Url} - 用时: {Elapsed}ms, 状态: {Success}&quot;,</span>
+<span class="line">                method, url, elapsed.TotalMilliseconds, !result.HasError);</span>
+<span class="line"></span>
+<span class="line">            return result;</span>
+<span class="line">        }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 针对BaseRequest&lt;T&gt;和BaseResponse类型的请求</span>
+<span class="line">        /// 与原ObjRequest兼容的方法</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public async Task&lt;TResponse&gt; SendRequestAsync&lt;TResponse&gt;(</span>
+<span class="line">            string url,</span>
+<span class="line">            HttpMethod method,</span>
+<span class="line">            BaseRequest&lt;TResponse&gt; request,</span>
+<span class="line">            string token = null,</span>
+<span class="line">            string mediaType = &quot;application/json&quot;,</span>
+<span class="line">            CancellationToken cancellationToken = default) </span>
+<span class="line">            where TResponse : BaseResponse, new()</span>
+<span class="line">        {</span>
+<span class="line">            // 如果提供了token，设置授权头</span>
+<span class="line">            if (!string.IsNullOrEmpty(token))</span>
+<span class="line">            {</span>
+<span class="line">                WithBearerToken(token);</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">            var result = await SendRequestAsync&lt;TResponse, BaseRequest&lt;TResponse&gt;&gt;(</span>
+<span class="line">                url, method, request, null, mediaType, cancellationToken);</span>
+<span class="line"></span>
+<span class="line">            if (result.HasError)</span>
+<span class="line">            {</span>
+<span class="line">                _logger?.LogWarning(&quot;请求失败: {Error}&quot;, result.ErrorMessage);</span>
+<span class="line">                return new TResponse(); // 返回默认实例以兼容原接口</span>
+<span class="line">            }</span>
+<span class="line"></span>
+<span class="line">            return result.Data ?? new TResponse();</span>
+<span class="line">        }</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    /// &lt;summary&gt;</span>
+<span class="line">    /// API结果包装类</span>
+<span class="line">    /// &lt;/summary&gt;</span>
+<span class="line">    public class ApiResult&lt;T&gt;</span>
+<span class="line">    {</span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 响应数据</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public T Data { get; set; }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// HTTP状态码</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public int StatusCode { get; set; }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 是否发生错误</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public bool HasError { get; set; }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 错误信息</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public string ErrorMessage { get; set; }</span>
+<span class="line"></span>
+<span class="line">        /// &lt;summary&gt;</span>
+<span class="line">        /// 请求是否成功</span>
+<span class="line">        /// &lt;/summary&gt;</span>
+<span class="line">        public bool IsSuccess =&gt; !HasError &amp;&amp; (StatusCode &gt;= 200 &amp;&amp; StatusCode &lt; 300);</span>
+<span class="line">    }</span>
+<span class="line">} </span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="vp-page-meta"><div class="vp-meta-item edit-link"><a class="auto-link external-link label" href="https://github.com/TuCoke/hb/tree/main/edit/main/docs/Net/Helper/Http/README.md" aria-label="在 GitHub 上编辑此页" rel="noopener noreferrer" target="_blank"><!--[--><!--[--><svg class="edit-icon" viewbox="0 0 1024 1024"><g fill="currentColor"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></g></svg><!--]--><!--]-->在 GitHub 上编辑此页<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">上次编辑于: </span><time class="meta-item-info" datetime="2025-06-04T03:44:18.000Z" data-allow-mismatch>2025/6/4 03:44</time></div><div class="vp-meta-item contributors"><span class="meta-item-label">贡献者: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: 2764136779@qq.com">Bo-Hong</span><!----><!--]--><!--]--></span></div></div></footer><!----><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script src="/hb/assets/js/runtime~app.c9d35812.js" defer></script><script src="/hb/assets/js/768.4c07e629.js" defer></script><script src="/hb/assets/js/app.508e9485.js" defer></script>
+  </body>
+</html>
