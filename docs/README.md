@@ -1,19 +1,16 @@
-# 技术文档中心
+<div align="center">
+ <font size="50">个人简介</font>
+</div>
 
-欢迎来到技术文档中心，这里包含了有关.NET和Golang的详细文档。
+##
 
-## 文档导航
+> 你好，我是一名软件工程师，主要的开发语言为 C# 和 JavaScript
+> 涉及 ASP.NET Core , Go, AntdUI 
 
-在左侧侧边栏中，您可以找到所有的文档分类和具体内容。我们主要提供以下技术的文档：
 
-- **.NET 文档**：包含.NET框架的基础知识、安装指南和WebAPI示例
-- **Golang 文档**：包含Go语言的基础知识、安装指南和使用方法
 
-## 最新更新
 
-- 添加了 [.NET WebAPI 示例](/Net/webapi.html) - 详细介绍了如何使用.NET创建WebAPI应用
-- 更新了 [Golang安装指南](/Goland/installation.html) - 包含最新版本的安装步骤
 
-## 关于本文档
+> QQ  -  2764136779
 
-本文档使用VuePress生成，所有内容均采用Markdown格式编写，便于维护和更新。侧边栏会自动根据文档结构生成，一级标题将作为侧边栏项目的标题。
+> VX 
