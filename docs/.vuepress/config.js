@@ -97,7 +97,7 @@ export default defineUserConfig({
           },
           {
             text: 'work',
-            link: '/work/2025',
+            link: '/work/2025/',
           },
           {
             text: 'RBAC 权限设计',
