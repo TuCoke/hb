@@ -96,6 +96,10 @@ export default defineUserConfig({
             ]
           },
           {
+            text: 'work',
+            link: '/work/2025',
+          },
+          {
             text: 'RBAC 权限设计',
             collapsible: true,
             children: [
@@ -117,11 +121,6 @@ export default defineUserConfig({
                 text: '鱼鱼助手',
                 link: '/other/auto/',
               }
-              // ,
-              // {
-              //   text: '鱼鱼助手运营方案简化版v1',
-              //   link: '/other/auto/yu',
-              // }
             ]
           }
         ],
