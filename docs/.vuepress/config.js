@@ -110,6 +110,13 @@ export default defineUserConfig({
             ]
           },
           {
+            text: '机器视觉',
+            collapsible: true,
+            children: [
+              '/yolo/'
+            ]
+          },
+          {
             text: 'Demo合集',
             collapsible: true,
             children: [
