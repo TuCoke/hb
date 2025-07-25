@@ -1,17 +1,52 @@
 <template><div><h1 id="🚀-闲鱼自动化上货工具-个人运营推广方案" tabindex="-1"><a class="header-anchor" href="#🚀-闲鱼自动化上货工具-个人运营推广方案"><span>🚀 闲鱼自动化上货工具 - 个人运营推广方案</span></a></h1>
+<h2 id="目的" tabindex="-1"><a class="header-anchor" href="#目的"><span>目的</span></a></h2>
+<blockquote>
+<p>目的
+检查
+坚持</p>
+</blockquote>
+<h2 id="大而全-todo-根据个人具体调整" tabindex="-1"><a class="header-anchor" href="#大而全-todo-根据个人具体调整"><span>大而全 TODO 根据个人具体调整</span></a></h2>
+<ul>
+<li>目前为中期目标</li>
+<li>目前🎯执行难点</li>
+<li>📝  外部问题</li>
+<li>(2025-6-2)</li>
+</ul>
+<blockquote>
+<p>闲鱼 目前官方做了限制(发布商品数量上做了限制 批量上货需求不是那么多了)
+现在主要点 把功能流程闭环, 例如 批量上货 导入数据 自动发货功能 为核心</p>
+</blockquote>
+<blockquote>
+<p>淘宝自动上货功能 后期主要精力在这一块 (使用自动化推荐) (使用自己研发的cookie等提取器) 直接调用api 接口 (都可能TODO 可能存在风控问题)</p>
+</blockquote>
+<ul>
+<li>
+<p>2025-07-01 千牛后台上货功能</p>
+</li>
+<li>
+<p>📝时间安排上, 目前人力只有一个人 主要精力在开发上</p>
+</li>
+</ul>
+<blockquote>
+<p>(目前功能点较少 核心功能已实现,同产品下没有什么竞争力,需要偏定制化功能)
+重点把精力放在dy视频上 ,争取一周两个视频(视频类型以软文为主 切勿广告化) (参考同行话术)</p>
+</blockquote>
+<blockquote>
+<p>走平台流量 (淘宝 pdd 咸鱼) 争取每周发两篇 投入成本 ppd -(800 左右) 淘宝-(1000 左右) 咸鱼-(无暂时使用上货工具)</p>
+</blockquote>
 <h2 id="📋-项目背景" tabindex="-1"><a class="header-anchor" href="#📋-项目背景"><span>📋 项目背景</span></a></h2>
 <ul>
 <li>🎯 项目类型：个人开发工具</li>
-<li>👥 目标用户：闲鱼卖家</li>
+<li>👥 目标用户：闲鱼卖家 虚拟产品卖家 代发为主</li>
 <li>💰 预算范围：2000-4000元</li>
 <li>⏱️ 运营周期：3个月</li>
 </ul>
 <h2 id="🎯-核心目标-根据个人简化" tabindex="-1"><a class="header-anchor" href="#🎯-核心目标-根据个人简化"><span>🎯 核心目标  根据个人简化</span></a></h2>
 <h3 id="短期目标-1个月" tabindex="-1"><a class="header-anchor" href="#短期目标-1个月"><span>短期目标（1个月）</span></a></h3>
 <ul>
-<li>🌱 获取100名种子用户 ✅</li>
-<li>👥 建立基础用户社群 ✅</li>
-<li>📝 收集用户反馈  ✅</li>
+<li>🌱 获取100名种子用户 ✅ (目前已经有两百个用户)</li>
+<li>👥 建立基础用户社群 ✅ (暂时投入维护太少首先使用公众号方式)</li>
+<li>📝 收集用户反馈  ✅ (解决不同安卓设备问题,解决用户定制化功能)</li>
 </ul>
 <h3 id="中期目标-3个月" tabindex="-1"><a class="header-anchor" href="#中期目标-3个月"><span>中期目标（3个月）</span></a></h3>
 <ul>
@@ -23,7 +58,6 @@
 <ul>
 <li>📱（主要） 社交媒体推广：1500元
 <ul>
-<li>❌📕 小红书推广：800元 （📕暂不使用 软文运营难度大）</li>
 <li>📺 抖音推广：700元   （📕主要观察同行）</li>
 </ul>
 </li>
@@ -31,18 +65,6 @@
 <ul>
 <li>🤝 基础合作：500元（免费试用+分成）</li>
 <li>💫 付费推广：500元（1-2个KOL）</li>
-</ul>
-</li>
-<li>👥 社群运营：500元
-<ul>
-<li>🎁 群活动奖励：300元</li>
-<li>🎯 用户激励：200元</li>
-</ul>
-</li>
-<li>🎨 内容制作：500元
-<ul>
-<li>🖌️ 设计费用：300元</li>
-<li>🎥 视频制作：200元</li>
 </ul>
 </li>
 <li>⚡ 应急资金：500元</li>
@@ -139,28 +161,6 @@
 <li>💰 深度合作：付费推广（300-500元/次）</li>
 </ul>
 </blockquote>
-<h3 id="_2-🎁-用户激励计划" tabindex="-1"><a class="header-anchor" href="#_2-🎁-用户激励计划"><span>2. 🎁 用户激励计划</span></a></h3>
-<ul>
-<li>[ ] 🆕 新用户首单优惠
-<ul>
-<li>💰 优惠力度：8折</li>
-<li>⏱️ 限时：7天</li>
-</ul>
-</li>
-<li>[ ] 👥 推荐奖励计划
-<ul>
-<li>🎁 推荐1人：获得1个月免费使用</li>
-<li>🎁 推荐3人：获得3个月免费使用</li>
-</ul>
-</li>
-<li>[ ] 📈 用户成长体系
-<ul>
-<li>👤 普通用户：基础功能</li>
-<li>⭐ 活跃用户：高级功能</li>
-<li>👑 核心用户：定制功能</li>
-</ul>
-</li>
-</ul>
 <h2 id="📊-效果追踪" tabindex="-1"><a class="header-anchor" href="#📊-效果追踪"><span>📊 效果追踪</span></a></h2>
 <h3 id="每日必做" tabindex="-1"><a class="header-anchor" href="#每日必做"><span>每日必做</span></a></h3>
 <ul>
@@ -181,28 +181,6 @@
 <ul>
 <li>❓ 问题记录</li>
 <li>💡 建议收集</li>
-</ul>
-</li>
-</ul>
-<h3 id="每周必做" tabindex="-1"><a class="header-anchor" href="#每周必做"><span>每周必做</span></a></h3>
-<ul>
-<li>[ ] 📈 分析数据趋势
-<ul>
-<li>👥 用户增长</li>
-<li>📊 内容效果</li>
-<li>💰 转化情况</li>
-</ul>
-</li>
-<li>[ ] 🎯 调整内容策略
-<ul>
-<li>📝 优化内容方向</li>
-<li>⏰ 调整发布节奏</li>
-</ul>
-</li>
-<li>[ ] 📊 优化运营方案
-<ul>
-<li>📈 根据数据调整</li>
-<li>🎯 更新运营策略</li>
 </ul>
 </li>
 </ul>

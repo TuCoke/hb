@@ -1,0 +1,186 @@
+<template><div><h1 id="服务端部署说明-文件上传工具文档" tabindex="-1"><a class="header-anchor" href="#服务端部署说明-文件上传工具文档"><span>服务端部署说明 - 文件上传工具文档</span></a></h1>
+<p>本文档描述了基于.NET 8开发的文件上传工具的实现方案和使用说明。</p>
+<h2 id="_1-开发文档" tabindex="-1"><a class="header-anchor" href="#_1-开发文档"><span>1. 开发文档</span></a></h2>
+<h3 id="_1-1-技术栈" tabindex="-1"><a class="header-anchor" href="#_1-1-技术栈"><span>1.1 技术栈</span></a></h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>技术选型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端</td>
+<td>.NET 8 Web API, Redis, Hangfire定时器, Autofac, SqlSugar</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1-2-api接口设计" tabindex="-1"><a class="header-anchor" href="#_1-2-api接口设计"><span>1.2 API接口设计</span></a></h3>
+<h4 id="_1-2-1-请求格式" tabindex="-1"><a class="header-anchor" href="#_1-2-1-请求格式"><span>1.2.1 请求格式</span></a></h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Request</td>
+<td>统一使用实体类</td>
+</tr>
+<tr>
+<td>Response</td>
+<td>统一返回值</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/262d997d-a7cd-4cf4-ad3c-034baeccd7ed.png" alt="Response格式"></p>
+<h4 id="_1-2-2-中间件" tabindex="-1"><a class="header-anchor" href="#_1-2-2-中间件"><span>1.2.2 中间件</span></a></h4>
+<h5 id="jwt认证" tabindex="-1"><a class="header-anchor" href="#jwt认证"><span>JWT认证</span></a></h5>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ValidateLifetime</td>
+<td>设置为false（客户端需求不能token过期）</td>
+</tr>
+<tr>
+<td>特殊说明</td>
+<td>如需过期,可在ApiAuthorizeFilter上下文鉴权,根据jwt颁发的token判断来源是否为客户端,是则续签(会影响性能)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/7a820ce4-1007-424b-8e1d-07394b9fe585.png" alt="JWT配置"></p>
+<h5 id="日志中间件" tabindex="-1"><a class="header-anchor" href="#日志中间件"><span>日志中间件</span></a></h5>
+<table>
+<thead>
+<tr>
+<th>中间件</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ExceptionHandlerMiddleWare</td>
+<td>记录request和response请求日志</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/71962ead-d30d-41bf-ab79-6538aae1025a.png" alt="日志配置"></p>
+<h3 id="_1-3-扩展功能" tabindex="-1"><a class="header-anchor" href="#_1-3-扩展功能"><span>1.3 扩展功能</span></a></h3>
+<h4 id="hangfire访问配置" tabindex="-1"><a class="header-anchor" href="#hangfire访问配置"><span>Hangfire访问配置</span></a></h4>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>访问地址</td>
+<td>域名或IP + /hangfire</td>
+</tr>
+<tr>
+<td>用户名</td>
+<td>DA</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>DAADMIN!</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hangfire页面说明" tabindex="-1"><a class="header-anchor" href="#hangfire页面说明"><span>Hangfire页面说明</span></a></h4>
+<table>
+<thead>
+<tr>
+<th>作业名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AlertJob</td>
+<td>预警规则配置页面，自动加载无需其他操作</td>
+</tr>
+<tr>
+<td>FileUploadJob</td>
+<td>文件关联iris状态任务</td>
+</tr>
+<tr>
+<td>UserSyncJob</td>
+<td>定时同步机构和大小组关系到数据库</td>
+</tr>
+</tbody>
+</table>
+<p>注：Cron为执行周期，可参考在线cron表达式</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/640b0508-2ddd-4298-afd0-0d295170dac6.png" alt="Hangfire配置"></p>
+<h2 id="_2-部署文档" tabindex="-1"><a class="header-anchor" href="#_2-部署文档"><span>2. 部署文档</span></a></h2>
+<h3 id="_2-1-环境要求" tabindex="-1"><a class="header-anchor" href="#_2-1-环境要求"><span>2.1 环境要求</span></a></h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.NET Runtime</td>
+<td>.NET 8运行时</td>
+</tr>
+<tr>
+<td>验证安装</td>
+<td>使用shell命令：<code v-pre>whereis dotnet</code>查看路径</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2-2-jenkins部署配置" tabindex="-1"><a class="header-anchor" href="#_2-2-jenkins部署配置"><span>2.2 Jenkins部署配置</span></a></h3>
+<div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre v-pre><code><span class="line"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> dotnet</span>
+<span class="line"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> dotnet/</span>
+<span class="line"><span class="token function">tar</span> xf /root/filecloudsync.tgz <span class="token parameter variable">-C</span> dotnet</span>
+<span class="line"><span class="token builtin class-name">cd</span> dotnet</span>
+<span class="line">dotnet publish <span class="token parameter variable">--configuration</span> Release</span>
+<span class="line"><span class="token function">cp</span> <span class="token parameter variable">-rf</span> /root/dotnet/DA.FileCloudSync.ApiServer/bin/Release/net8.0/publish/ /home/maoyf/hongbodev/dotnetFileServer/publish/</span>
+<span class="line">systemctl restart DA.ApiServer.service</span>
+<span class="line">systemctl status DA.ApiServer.service</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_2-3-服务配置" tabindex="-1"><a class="header-anchor" href="#_2-3-服务配置"><span>2.3 服务配置</span></a></h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DA.ApiServer.service</td>
+<td>无需更改，在项目根目录下Systemctl</td>
+</tr>
+<tr>
+<td>Nginx配置</td>
+<td>需要开启 client_max_body_size 100m 来传输fromdata表单文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2-4-程序项目编译" tabindex="-1"><a class="header-anchor" href="#_2-4-程序项目编译"><span>2.4 程序项目编译</span></a></h3>
+<p>使用Jenkins CICD自动化部署：</p>
+<ol>
+<li>DA.FileCloudSync.ApiServer推送到分支</li>
+<li>查看构建状态（绿色代表构建成功）</li>
+</ol>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/14625f5c-2c48-4048-9c7e-31ea98bbfc61.png" alt="Jenkins配置1">
+<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/ff6ddb0e-8fc0-4287-8b9c-90c3ce2cecfb.png" alt="Jenkins配置2">
+<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/3M0OzeZ86vmXAqze/img/0b5286f4-ed95-42b4-a8da-e7f89253359f.png" alt="构建状态"></p>
+</div></template>
+
+

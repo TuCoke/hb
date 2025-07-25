@@ -1,0 +1,116 @@
+<template><div><h1 id="文件上传系统" tabindex="-1"><a class="header-anchor" href="#文件上传系统"><span>文件上传系统</span></a></h1>
+<h2 id="服务端后端框架搭建集成" tabindex="-1"><a class="header-anchor" href="#服务端后端框架搭建集成"><span>服务端后端框架搭建集成</span></a></h2>
+<ol>
+<li>DI:AutoFac</li>
+<li>ORM:SqlSugar</li>
+<li>Cache:Redis</li>
+<li>Log:Nlog</li>
+<li>程序中服务类重新封装，通用组件调整</li>
+</ol>
+<h2 id="账号管理" tabindex="-1"><a class="header-anchor" href="#账号管理"><span>账号管理</span></a></h2>
+<ol>
+<li>机构管理</li>
+<li>部门管理</li>
+<li>平台管理</li>
+<li>账号管理</li>
+</ol>
+<h2 id="权限管理" tabindex="-1"><a class="header-anchor" href="#权限管理"><span>权限管理</span></a></h2>
+<ol>
+<li>登录端管理，区分客户端、服务端</li>
+<li>根据角色权限展示不同页面 (通过拦截器,AuthorizationHandler,ApiAuthorizeFilter 来判断角色权限)</li>
+</ol>
+<h2 id="基础数据同步" tabindex="-1"><a class="header-anchor" href="#基础数据同步"><span>基础数据同步</span></a></h2>
+<ol>
+<li>机构同步</li>
+<li>科室信息同步</li>
+<li>账号同步</li>
+</ol>
+<h2 id="客户端相关接口" tabindex="-1"><a class="header-anchor" href="#客户端相关接口"><span>客户端相关接口</span></a></h2>
+<ol>
+<li>登录接口</li>
+<li>文件上传信息接口</li>
+<li>客户端健康检查接口</li>
+<li>客户端异常信息接口</li>
+</ol>
+<h2 id="ai中台对接" tabindex="-1"><a class="header-anchor" href="#ai中台对接"><span>AI中台对接</span></a></h2>
+<ol>
+<li>上传信息同步，包含无关联关系 (根据条码号和样本号)</li>
+<li>AI中台手动绑定关联关系信息反同</li>
+</ol>
+<h1 id="客户端" tabindex="-1"><a class="header-anchor" href="#客户端"><span>客户端</span></a></h1>
+<h2 id="文件监控" tabindex="-1"><a class="header-anchor" href="#文件监控"><span>文件监控</span></a></h2>
+<ol>
+<li>利用文件系统事件（如inotify/FileSystemWatcher）实现实时监控，同时配合定时扫描确保遗漏文件捕捉</li>
+<li>记录下事件详细信息，在配置的执行时间段异步处理</li>
+</ol>
+<h2 id="流程逻辑" tabindex="-1"><a class="header-anchor" href="#流程逻辑"><span>流程逻辑</span></a></h2>
+<blockquote>
+<p>1.客户端使用Winform + AntdUI, 客户端登录
+<img src="https://github.com/user-attachments/assets/0a513214-1734-4736-9ab3-af1edb8a5773" alt="1"></p>
+<p>目的为了解决不同平台下,不同大小组,分别上次文件绑定到不同oss地址, (机构下有平台,平台绑定大小组和对应桶,)
+客户端在上传配置的时候进行配置,例如(勾选大小组后配置大小组下对应的桶信息,)</p>
+</blockquote>
+<blockquote>
+<p>2.服务端,</p>
+</blockquote>
+<h1 id="仪器接口" tabindex="-1"><a class="header-anchor" href="#仪器接口"><span>仪器接口</span></a></h1>
+<h2 id="携光网口通讯" tabindex="-1"><a class="header-anchor" href="#携光网口通讯"><span>携光网口通讯</span></a></h2>
+<h3 id="通过tcp网口通讯获取设备发过来的-条码号-或者-接收编号-通过http接口发送给iris系统-通过base64-编码" tabindex="-1"><a class="header-anchor" href="#通过tcp网口通讯获取设备发过来的-条码号-或者-接收编号-通过http接口发送给iris系统-通过base64-编码"><span>通过tcp网口通讯获取设备发过来的 条码号,或者 接收编号 ,通过http接口发送给iris系统,(通过base64 编码)</span></a></h3>
+<h3 id="串口双向通讯-优利特-us1680" tabindex="-1"><a class="header-anchor" href="#串口双向通讯-优利特-us1680"><span>串口双向通讯, 优利特 US1680</span></a></h3>
+<ol>
+<li>通过截取标识位</li>
+</ol>
+<blockquote>
+<p>解析出,当前仪器发送的 为请求检测信息标识则,根据仪器发送过来的信息,解析出条码号,</p>
+</blockquote>
+<ol start="2">
+<li>解析仪器数据包,写入txt文件</li>
+</ol>
+<blockquote>
+<p>获取对应的检测项目 可能存在多个检测项目,组装成仪器所需要的数据,发送给仪器,仪器会更具检测项目去执行对应检测项目逻辑,后 仪器发送数据包过来,通过标识位,解析出当前项目的结果值,生成报文写入到指定txt文件下</p>
+</blockquote>
+<ol start="3">
+<li>Http上传数据通过指定模板格式</li>
+</ol>
+<blockquote>
+<p>通过定时任务发送http接口到iris接口,完成流程 (同时根据接收编号,来判断质控标识,如果真则调用接口使用质控模板发送http请求)
+网口交互,串口交互,共享文件交互,数据库交互</p>
+</blockquote>
+<h2 id="工作内容总结" tabindex="-1"><a class="header-anchor" href="#工作内容总结"><span>工作内容总结</span></a></h2>
+<blockquote>
+<ol>
+<li>简化并自动化医检大数据平台的样本文件上传流程。通过对指定文件夹的实时监控，系
+统可自动识别并上传新增文件，并将上传后的文件路径与IRIS系统中对应的样本信息建立绑定关系，
+最终同步至医检大数据平台，实现文件数据的高效归集与统一管理</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>上传人员：负责日常文件的上传与任务管理；</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>系统管理员：负责权限配置、系统维护与异常监控等后台管理工作</li>
+</ol>
+</blockquote>
+<p>1.负责后端整体服务框架的搭建</p>
+<blockquote>
+<p>封装数据访问层,帮助类,中间件(使用中间件,对返回的数据加密等,错误日志),角色等登录功能(使用Filter拦截方法),异常日志功能,AOP中间件(抽离重复字段查询)</p>
+</blockquote>
+<p>2.基础数据接口实现和数据流程走通</p>
+<blockquote>
+<p>预警管理通过,页面配置时间窗口,转成cron表达式 通过定时任务,来统计obs上传失败率和iris关联失败率</p>
+</blockquote>
+<p>3.协调产品沟通,技术,原型梳理评审</p>
+<blockquote>
+<p>验证可行性确保原型设计在技术层面可实现,分析技术难点与潜在风险,明确需求边界
+避免原型设计超出实际业务需求,确保原型与产品需求文档一致</p>
+</blockquote>
+<p>4.客户端,监控文件状态变化修改(FileSystemWatcher)</p>
+<blockquote>
+<p>根据用户配置,文件夹路径和正则表达式,解析符合文件要求的列表,添加到任务队列中,通过读取文件队列,上传到华为obs中,上传完成后发送请求给服务端, 服务端接收数据写入数据表,(上传完成到数据表中有数据后,使用定时任务,轮询调用http请求接口,(通过条码号,大小组,检测编号等字段数据发送请求,同时使用redis缓存缓存相同 postdata 数据,文件可能会存在重复)关联iris文件状态)</p>
+</blockquote>
+</div></template>
+
+
