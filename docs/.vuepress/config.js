@@ -98,10 +98,36 @@ export default defineUserConfig({
           },
           {
             text: 'Work',
-            collapsible: true,
+            //collapsible: true,
             children: [
-              '/work/2025/README-HJY',
-              '/work/2025/README-Table',
+              {
+                text: '2024年工作总结',
+                collapsible: true,
+                link: '/work/README2024',
+                children: [
+                  // {
+                  //   text: '文件上传工具',
+                  //   link: '/work/2025/README-Table',
+                  // },
+                ]
+              },
+              {
+                text: '2025年工作总结',
+                link: '/work/README2025',
+                //  collapsible: true,
+                children: [
+                  {
+                    text: '宏基因',
+                    link: '/work/2025/README-HJY',
+                  },
+                  {
+                    text: '文件上传工具',
+                    link: '/work/2025/README-Table',
+                  },
+                ]
+              },
+
+
             ]
           },
           {
