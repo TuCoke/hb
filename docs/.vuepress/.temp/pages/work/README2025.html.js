@@ -1,5 +1,5 @@
 import comp from "E:/Code/vscode/blog/vuepress-starter/docs/.vuepress/.temp/pages/work/README2025.html.vue"
-const data = JSON.parse("{\"path\":\"/work/README2025.html\",\"title\":\"个人工作总结\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{},\"filePathRelative\":\"work/README2025.md\"}")
+const data = JSON.parse("{\"path\":\"/work/README2025.html\",\"title\":\"个人工作总结\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1753684054000,\"contributors\":[{\"name\":\"Bo-Hong\",\"username\":\"Bo-Hong\",\"email\":\"2764136779@qq.com\",\"commits\":2,\"url\":\"https://github.com/Bo-Hong\"}],\"changelog\":[{\"hash\":\"01d9e0b99602cdf82004915ad806406aa318555c\",\"time\":1753684054000,\"email\":\"2764136779@qq.com\",\"author\":\"Bo-Hong\",\"message\":\"合并\"},{\"hash\":\"676f1282e7be8737045e7ccf955315c7fb717f69\",\"time\":1753680814000,\"email\":\"2764136779@qq.com\",\"author\":\"Bo-Hong\",\"message\":\"个人工作总结work\"}]},\"filePathRelative\":\"work/README2025.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {
