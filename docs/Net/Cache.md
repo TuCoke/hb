@@ -66,7 +66,7 @@
 >  例如我们这个缓存为用户缓存逻辑,我们继承 EntityCacheBase <响应结果实体,传入key的类型>
 UserRoleCacheService 在其他地方进行构造函数注入,进行使用
 
-
+``` C#
     /// <summary>
     /// 用户缓存
     /// </summary>
@@ -117,7 +117,7 @@ UserRoleCacheService 在其他地方进行构造函数注入,进行使用
             };
         }
     }
-
+```
 
 
 
