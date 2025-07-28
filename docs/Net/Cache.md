@@ -1,6 +1,6 @@
 # NetCore中使用缓存封装
 
-``` C#
+```csharp
     /// <summary>
     /// 分离 业务逻辑和缓存逻辑  如果都不存在 需要返回null 否则缓存不生效
     /// </summary>
@@ -66,7 +66,7 @@
 >  例如我们这个缓存为用户缓存逻辑,我们继承 EntityCacheBase <响应结果实体,传入key的类型>
 UserRoleCacheService 在其他地方进行构造函数注入,进行使用
 
-``` C#
+```csharp
     /// <summary>
     /// 用户缓存
     /// </summary>
