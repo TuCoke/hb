@@ -99,7 +99,6 @@ export default defineUserConfig({
             text: 'Work',
             collapsible: true,
             children: [
-
               '/work/2025/README-HJY',
               '/work/2025/README-Table',
             ]
