@@ -20,6 +20,7 @@ export default defineUserConfig({
   base: "/hb/",
 
   theme: defaultTheme({
+
     // GitHub 仓库链接，请替换为您实际的GitHub仓库地址
     repo: 'https://github.com/TuCoke/hb/tree/main',
     // 自定义仓库链接文字
