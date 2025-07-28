@@ -1,5 +1,6 @@
 # .Net Core 缓存封装
 
+## 抽象类封装 EntityCacheBase  
 ```csharp
     /// <summary>
     /// 分离 业务逻辑和缓存逻辑  如果都不存在 需要返回null 否则缓存不生效
@@ -62,7 +63,7 @@
     }
 ```
 
-### 使用方式
+## 使用方式
 >  例如我们这个缓存为用户缓存逻辑,我们继承 EntityCacheBase <响应结果实体,传入key的类型>
 UserRoleCacheService 在其他地方进行构造函数注入,进行使用
 
