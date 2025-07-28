@@ -1,4 +1,4 @@
-# .Net Core中使用缓存封装
+# .Net Core 缓存封装
 
 ```csharp
     /// <summary>
