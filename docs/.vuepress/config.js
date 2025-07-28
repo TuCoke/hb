@@ -96,8 +96,13 @@ export default defineUserConfig({
             ]
           },
           {
-            text: 'work',
-            link: '/work/2025/README-Table',
+            text: 'Work',
+            collapsible: true,
+            children: [
+
+              '/work/2025/README-HJY',
+              '/work/2025/README-Table',
+            ]
           },
           {
             text: 'RBAC 权限设计',
