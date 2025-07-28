@@ -82,6 +82,7 @@ export default defineUserConfig({
             collapsible: true,
             children: [
               '/Net/',
+              '/Net/Cache',
               '/Net/installation',
               '/Net/basics',
               '/Net/webapi'
