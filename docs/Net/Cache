@@ -1,0 +1,63 @@
+# NetCore中使用缓存封装
+
+``` C#
+    /// <summary>
+    /// 分离 业务逻辑和缓存逻辑  如果都不存在 需要返回null 否则缓存不生效
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    public abstract class EntityCacheBase<T, TKey> : ITransientService
+    {
+        protected readonly IMemoryCache _cache;
+        protected readonly ILogger<EntityCacheBase<T, TKey>> _logger;
+
+        protected string cacheName = string.Empty;
+        protected TKey cacheKey;
+        protected TimeSpan expiryTime = TimeSpan.FromSeconds(60);
+        protected Func<Task<T>> func = null;
+
+        protected EntityCacheBase(
+)
+        {
+            // 可切换redis
+            _cache = new MemoryCache(new MemoryCacheOptions());
+
+
+        }
+
+        /// <summary>
+		/// 子类通知需要重写 override 程序运行开始时加载实体监听函数，在数据库实体发生变化时，删除当前缓存
+		/// </summary>
+        public virtual void ListenEntity()
+        {
+            return;
+        }
+
+        public virtual async Task<T> GetAsync(TKey key)
+        {
+            try
+            {
+                cacheKey = key;
+                return await _cache.GetOrCreateAsync(cacheName + cacheKey.ToString(), async cacheEntry =>
+                {
+                    cacheEntry.AbsoluteExpirationRelativeToNow = expiryTime;
+                    if (func == null)
+                    {
+                        throw new InvalidOperationException("The 'func' delegate must be set before calling GetAsync.");
+                    }
+                    return await func();
+                }) ?? throw new InvalidOperationException("The cache returned a null value.");
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex, "Error in GetAsync for key {Key}: {Message}", key, ex.Message);
+                throw new InvalidOperationException("Error in GetAsync: " + ex.Message);
+            }
+        }
+
+        public void Remove(TKey key)
+        {
+            _cache.Remove(cacheName + key.ToString());
+        }
+    }
+```
