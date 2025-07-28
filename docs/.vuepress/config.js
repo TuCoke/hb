@@ -83,6 +83,7 @@ export default defineUserConfig({
             children: [
               '/Net/',
               '/Net/Cache',
+              '/Net/Wechat',
               '/Net/installation',
               '/Net/basics',
               '/Net/webapi'
