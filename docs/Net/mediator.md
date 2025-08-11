@@ -12,15 +12,15 @@ MediatR 是 .NET 中的一种实现 中介者模式（Mediator Pattern） 的库
 
 
 ## 1. 处理请求和返回基本用法
-MediatR 使用 请求/响应模式，即客户端通过请求发送数据，并由处理程序处理后返回响应。请求通常是实现 IRequest<TResponse> 接口的类，
-TResponse 是请求的响应类型。处理程序需要实现 IRequestHandler<TRequest, TResponse> 接口来处理请求。
+MediatR 使用 请求/响应模式，即客户端通过请求发送数据，并由处理程序处理后返回响应。请求通常是实现 IRequest&lt;TResponse&gt; 接口的类，
+TResponse 是请求的响应类型。处理程序需要实现 IRequestHandler&lt;TRequest, TResponse&gt; 接口来处理请求。
 
 ### 定义请求
 ```csharp
     
-	// 定义Rquest 请求 继承 IRequest<T>   注意这里 T 为返回值 例如 
+	// 定义Rquest 请求 继承 IRequest&lt;T&gt;   注意这里 T 为返回值 例如 
 	// return "11";
-    public class MyRequest : IRequest<string>
+    public class MyRequest : IRequest&lt;string&gt;
     {
         public string Name { get; set; }
     }
@@ -33,9 +33,9 @@ using System.Threading;
 using System.Threading.Tasks;
 
 // MyRequest 是我们上方定义的 请求体, 返回类型 string类型
-public class MyRequestHandler : IRequestHandler<MyRequest, string>
+public class MyRequestHandler : IRequestHandler&lt;MyRequest, string&gt;
 {
-    public Task<string> Handle(MyRequest request, CancellationToken cancellationToken)
+    public Task&lt;string&gt; Handle(MyRequest request, CancellationToken cancellationToken)
     {
         // 在这里处理请求的业务逻辑
         return Task.FromResult($"Hello, {request.Name}!");
@@ -44,7 +44,7 @@ public class MyRequestHandler : IRequestHandler<MyRequest, string>
 
 
 ```
-> MyRequestHandler 处理 MyRequest 请求，并返回一个字符串响应，格式为 "Hello, [Name]!"。
+> MyRequestHandler 处理 MyRequest 请求，并返回一个字符串响应，格式为 "Hello, !"。
 
 
     

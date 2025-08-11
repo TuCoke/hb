@@ -1,4 +1,4 @@
-<template><div><h1 id="宏基因系统" tabindex="-1"><a class="header-anchor" href="#宏基因系统"><span>宏基因系统</span></a></h1>
+<template><div><h1 id="宏基因-hla分型自动化报告" tabindex="-1"><a class="header-anchor" href="#宏基因-hla分型自动化报告"><span>宏基因-HLA分型自动化报告</span></a></h1>
 <table>
 <thead>
 <tr>
@@ -19,9 +19,14 @@
 <td>客户端pc配置</td>
 <td>1. 客户端通过定时任务，读取共享配置文件下的文件，进行推送信息（通过Http推送到iris、生信）<br>2. 根据后台管理配置，进行推送到不同平台下的钉钉和大小组<br>3. 达到批次发布报告进程跟踪</td>
 </tr>
+<tr>
+<td>数据梳理推送生信</td>
+<td><br>1. 通过关系API调用iris系统中,获取已接收或医嘱更新的样本信息数据.<br>2. 数据根据不同分析流程字段进行梳理,通过约定文件方式,提交txt文本数据给生信系统.<br>3. 通过任务表获取批次状态和结果通过拉取约定格式下 state.txt 文件,获取内容,根据文件解析出对应的excel报告内容, 通过分析流程字段处理数据后,写入对应的数据表</td>
+</tr>
 </tbody>
 </table>
 <h2 id="项目结构" tabindex="-1"><a class="header-anchor" href="#项目结构"><span>项目结构</span></a></h2>
+<p>宏基因</p>
 </div></template>
 
 
