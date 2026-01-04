@@ -20,7 +20,6 @@ export default defineUserConfig({
   base: "/hb/",
 
   theme: defaultTheme({
-
     // GitHub 仓库链接，请替换为您实际的GitHub仓库地址
     repo: 'https://github.com/TuCoke/hb/tree/main',
     // 自定义仓库链接文字
@@ -125,6 +124,10 @@ export default defineUserConfig({
                   {
                     text: '文件上传工具',
                     link: '/work/2025/README-Table',
+                  },
+                  {
+                    text: '跨境电商ERP-Commerce',
+                    link: '/work/2025/12/README-Commerce'
                   },
                 ]
               },
