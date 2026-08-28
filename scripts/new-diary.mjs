@@ -19,7 +19,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DIARY_DIR = path.resolve(__dirname, '../private/diary')
 const WEEK = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 
-const args = process.argv.slice(2)
+const rawArgs = process.argv.slice(2)
+const noOpen = rawArgs.includes('--no-open')
+const args = rawArgs.filter((a) => a !== '--no-open') // 选项不进标题
 let date = new Date()
 if (args[0] && /^\d{4}-\d{2}-\d{2}$/.test(args[0])) {
   date = new Date(`${args.shift()}T00:00:00`)
@@ -64,7 +66,7 @@ console.log(`文件：${rel}`)
 console.log('写完直接 git commit，提交钩子会自动加密；也可手动 npm run diary:lock')
 
 // 顺手在 VS Code 里打开这个文件（没装 code 命令就忽略）
-if (!args.includes('--no-open')) {
+if (!noOpen) {
   try {
     const child = spawn('code', ['-r', file], { shell: true, stdio: 'ignore', detached: true })
     child.on('error', () => {})
