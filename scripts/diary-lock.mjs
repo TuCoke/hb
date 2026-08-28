@@ -13,7 +13,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import MarkdownIt from 'markdown-it'
-import { encryptText } from '../docs/.vuepress/diaryCrypto.js'
+import { encryptText, decryptText } from '../docs/.vuepress/diaryCrypto.js'
 import { PRIVATE_DIR, PUBLIC_DIR, listMonthFiles, parseArgs, getPassword, rel } from './diary-common.mjs'
 
 const md = new MarkdownIt({ html: true, linkify: true })
@@ -28,7 +28,24 @@ function splitTitle(text, fallback) {
   return { title, body: lines.join('\n').trim() + '\n' }
 }
 
-/** --changed 模式：密文不存在，或明文比密文新，才需要重新加密 */
+/** 现有密文解出来是否和明文一致（密码不匹配或文件损坏都视为不一致，需要重新加密） */
+async function sameAsEncrypted({ year, month, file }, pwd) {
+  const out = path.join(PUBLIC_DIR, year, `${month}.md`)
+  if (!fs.existsSync(out)) return false
+  const text = fs.readFileSync(out, 'utf8')
+  const pick = (k) => {
+    const m = text.match(new RegExp('^ +' + k + ': *(.+)$', 'm'))
+    return m ? JSON.parse(m[1].trim()) : undefined
+  }
+  try {
+    const json = await decryptText(pwd, { salt: pick('salt'), iv: pick('iv'), data: pick('data'), iterations: Number(pick('iterations')) || undefined })
+    return JSON.parse(json).md === fs.readFileSync(file, 'utf8')
+  } catch {
+    return false
+  }
+}
+
+/** --changed / --check 的时间戳预筛：密文不存在，或明文比密文新，才可能需要重新加密 */
 function needsLock({ year, month, file }) {
   const out = path.join(PUBLIC_DIR, year, `${month}.md`)
   if (!fs.existsSync(out)) return true
@@ -59,6 +76,19 @@ async function main() {
   const pwd = await getPassword(opts, { confirm: true })
   if (pwd.length < 6) throw new Error('密码至少 6 位')
   if (pwd.length < 16) console.warn('提示：密文会公开在仓库里，短密码可被离线暴力破解，建议 16 位以上\n')
+
+  if (opts.changed) {
+    // 有密码时改用内容比对：解开现有密文和明文一致就跳过，比时间戳可靠（编辑器打开文件也不会误判）
+    const really = []
+    for (const s of sources) {
+      if (!(await sameAsEncrypted(s, pwd))) really.push(s)
+    }
+    sources = really
+    if (sources.length === 0) {
+      console.log('日记没有改动，无需重新加密')
+      return
+    }
+  }
 
   for (const { year, month, file } of sources) {
     const text = fs.readFileSync(file, 'utf8')
