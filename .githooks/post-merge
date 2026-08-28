@@ -1,0 +1,5 @@
+#!/bin/sh
+# git pull / merge 之后：把有变化的日记密文同步到本地明文（有未提交改动的月份不会被覆盖）
+[ -d private ] || exit 0
+node scripts/diary-unlock.mjs --sync
+exit 0

@@ -1,0 +1,33 @@
+#!/bin/sh
+# 提交前自动加密有改动的日记（private/diary → docs/diary），并加入本次提交。
+# 启用方式：npm install 时由 package.json 的 prepare 脚本自动执行
+#           git config core.hooksPath .githooks
+# 跳过一次：git commit --no-verify
+
+# 这台电脑上没有日记明文，直接放行（例如只改文档 / CI）
+[ -d private/diary ] || exit 0
+
+if [ ! -f private/.password ]; then
+  # 没有密码文件：只检查，有未加密的改动就拦下提醒
+  node scripts/diary-lock.mjs --check && exit 0
+  echo ""
+  echo "✖ 请先执行 npm run diary:lock 加密后再提交；"
+  echo "  或把密码写入 private/.password，以后提交时自动加密。"
+  exit 1
+fi
+
+# 记录本次提交开始时暂存区是否为空
+if git diff --cached --quiet; then index_was_empty=1; else index_was_empty=0; fi
+
+node scripts/diary-lock.mjs --changed || exit 1
+git add docs/diary
+
+# git 的限制：提交开始时暂存区为空的话，钩子里再 add 也会被判定为 nothing to commit。
+# 这里直接给出明确提示（密文已经暂存好了，再 commit 一次即可）。
+if [ "$index_was_empty" = 1 ] && ! git diff --cached --quiet; then
+  echo ""
+  echo "✔ 日记已加密并暂存，但这次 git commit 会因为开始时暂存区为空而不生效。"
+  echo "  请再执行一次 git commit；以后只改日记时可直接用：npm run diary:push"
+  exit 1
+fi
+exit 0

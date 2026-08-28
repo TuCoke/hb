@@ -1,6 +1,7 @@
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { webpackBundler } from '@vuepress/bundler-webpack'
+import { autoSidebar } from './autoSidebar.js'
 
 export default defineUserConfig({
   // 多语言配置
@@ -74,6 +75,10 @@ export default defineUserConfig({
             ]
           },
 
+          {
+            text: '日记',
+            link: '/diary/',
+          },
         ],
         sidebar: [
           {
@@ -164,6 +169,18 @@ export default defineUserConfig({
                 text: '鱼鱼助手',
                 link: '/other/auto/',
               }
+            ]
+          },
+          {
+            text: '日记',
+            collapsible: true,
+            children: [
+              {
+                text: '日记首页',
+                link: '/diary/',
+              },
+              // 按目录自动生成（年→月，最新在前），见 .vuepress/autoSidebar.js
+              ...autoSidebar('/diary/', { desc: true }),
             ]
           }
         ],

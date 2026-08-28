@@ -8,7 +8,13 @@
     "docs:build": "vuepress build docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",
     "docs:dev": "vuepress dev docs",
-    "docs:update-package": "npx vp-update"
+    "docs:update-package": "npx vp-update",
+    "diary": "node scripts/new-diary.mjs",
+    "diary:lock": "node scripts/diary-lock.mjs",
+    "diary:unlock": "node scripts/diary-unlock.mjs",
+    "prepare": "git config core.hooksPath .githooks",
+    "diary:push": "node scripts/diary-push.mjs",
+    "diary:init": "node scripts/diary-init.mjs"
   },
   "devDependencies": {
     "@vuepress/bundler-webpack": "2.0.0-rc.20",

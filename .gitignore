@@ -248,3 +248,8 @@ config.local.json
 *.bak
 *.backup
 *.orig
+
+# ====================================
+# 日记明文（只保留在本地，提交前用 npm run diary:lock 加密到 docs/diary）
+# ====================================
+/private/
