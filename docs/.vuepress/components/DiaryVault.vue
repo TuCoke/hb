@@ -7,7 +7,8 @@ import { decryptText } from '../diaryCrypto.js'
 const STORAGE_KEY = 'diary:password'
 
 const frontmatter = usePageFrontmatter()
-const payload = computed(() => frontmatter.value.diary)
+// 密文放在 frontmatter 的 vault 字段（早期版本叫 diary，兼容保留）
+const payload = computed(() => frontmatter.value.vault || frontmatter.value.diary)
 
 const password = ref('')
 const html = ref('')

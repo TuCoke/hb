@@ -1,36 +1,84 @@
-/** lock / unlock 脚本共用的小工具 */
+/** lock / unlock / init / push 脚本共用的小工具 */
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export const ROOT = path.resolve(__dirname, '..')
-export const PRIVATE_DIR = path.join(ROOT, 'private', 'diary') // 明文，不入库
-export const PUBLIC_DIR = path.join(ROOT, 'docs', 'diary')     // 密文，提交到仓库
-
-export const rel = (p) => path.relative(ROOT, p).split(path.sep).join('/')
-
-/** 列出 <dir>/<YYYY>/<MM>.md，返回 [{ year, month, file }] */
-export function listMonthFiles(dir) {
-  if (!fs.existsSync(dir)) return []
-  const out = []
-  for (const year of fs.readdirSync(dir).filter((n) => /^\d{4}$/.test(n)).sort()) {
-    const ydir = path.join(dir, year)
-    if (!fs.statSync(ydir).isDirectory()) continue
-    for (const f of fs.readdirSync(ydir).filter((n) => /^(0[1-9]|1[0-2])\.md$/.test(n)).sort()) {
-      out.push({ year, month: f.slice(0, 2), file: path.join(ydir, f) })
-    }
-  }
-  return out
-}
 
 /** 本地密码文件（在 /private/ 下，随目录一起被 gitignore） */
 export const PASSWORD_FILE = path.join(ROOT, 'private', '.password')
 
 /**
+ * 保险库：需要密码才能看的板块。private 下放明文（不入库），docs 下放自动生成的密文。
+ * 再加一个板块只需在这里加一行，lock / unlock / 钩子 / 浏览器解密全部通用。
+ *   match(rel)：相对库根目录的路径，决定哪些 .md 参与加密（日记只认 <年>/<月>.md，说明页和表情表不加密）
+ */
+export const VAULTS = [
+  {
+    name: '日记',
+    privateDir: path.join(ROOT, 'private', 'diary'),
+    publicDir: path.join(ROOT, 'docs', 'diary'),
+    match: (rel) => /^\d{4}\/(0[1-9]|1[0-2])\.md$/.test(rel),
+  },
+  {
+    name: '工作总结',
+    privateDir: path.join(ROOT, 'private', 'work'),
+    publicDir: path.join(ROOT, 'docs', 'work'),
+    match: (rel) => rel.endsWith('.md'),
+  },
+]
+
+// 兼容旧引用（new-diary 等只关心日记）
+export const PRIVATE_DIR = VAULTS[0].privateDir
+export const PUBLIC_DIR = VAULTS[0].publicDir
+
+export const rel = (p) => path.relative(ROOT, p).split(path.sep).join('/')
+
+/** 列出某个库某一侧参与加密的 md 文件 → [{ vault, rel, file }] */
+export function listVaultFiles(vault, side) {
+  const base = side === 'private' ? vault.privateDir : vault.publicDir
+  if (!fs.existsSync(base)) return []
+  const out = []
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name.startsWith('.')) continue
+      const p = path.join(dir, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (e.name.endsWith('.md')) {
+        const r = path.relative(base, p).split(path.sep).join('/')
+        if (vault.match(r)) out.push({ vault, rel: r, file: p })
+      }
+    }
+  }
+  walk(base)
+  return out.sort((a, b) => a.rel.localeCompare(b.rel))
+}
+
+/** 同一个文件在另一侧的路径（明文 ↔ 密文） */
+export function counterpart(entry, side) {
+  const base = side === 'private' ? entry.vault.privateDir : entry.vault.publicDir
+  return path.join(base, ...entry.rel.split('/'))
+}
+
+/** 从 lock 生成的 frontmatter 里取出密文字段（vault: 或早期的 diary:），不是密文文件则返回 null */
+export function readPayload(text) {
+  const fm = text.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+  if (!fm || !/^(vault|diary):/m.test(fm[1])) return null
+  const pick = (key) => {
+    const m = fm[1].match(new RegExp('^ +' + key + ': *(.+)$', 'm'))
+    if (!m) return undefined
+    const v = m[1].trim()
+    return v.startsWith('"') ? JSON.parse(v) : v
+  }
+  return { salt: pick('salt'), iv: pick('iv'), data: pick('data'), iterations: Number(pick('iterations')) || undefined }
+}
+
+/**
  * 解析命令行：
  *   -p/--password 密码    --force 覆盖
- *   --changed 只处理有改动的月份    --check 只检查是否有未加密的改动（不需要密码）
+ *   --changed 只处理有改动的文件    --check 只检查是否有未加密的改动（不需要密码）
+ *   --sync    git pull 后同步（钩子用）
  */
 export function parseArgs(argv) {
   const opts = { password: '', force: false, changed: false, check: false, sync: false }
@@ -107,7 +155,7 @@ export function askHidden(prompt) {
 export async function getPassword(opts, { confirm = false } = {}) {
   let pwd = opts.password || process.env.DIARY_PASSWORD || readPasswordFile()
   if (!pwd) {
-    pwd = await askHidden('请输入日记密码：')
+    pwd = await askHidden('请输入密码：')
     if (confirm) {
       const again = await askHidden('请再输入一次：')
       if (again !== pwd) throw new Error('两次输入的密码不一致')

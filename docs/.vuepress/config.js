@@ -66,11 +66,19 @@ export default defineUserConfig({
             ]
           },
           {
-            text: 'Demo集合',
+            text: '自己项目总结',
             children: [
               {
-                text: '鱼鱼助手',
+                text: '云盘搜索',
+                link: '/other/yupan/',
+              },
+              {
+                text: '鱼鱼助手（闲鱼自动化）',
                 link: '/other/auto/',
+              },
+              {
+                text: 'AutoGo 云控',
+                link: '/other/autogov/',
               },
             ]
           },
@@ -158,16 +166,42 @@ export default defineUserConfig({
             ]
           },
           {
-            text: 'Demo合集',
+            text: '自己项目总结',
             collapsible: true,
             children: [
+              {
+                text: '总览',
+                link: '/other/',
+              },
               {
                 text: '云盘搜索',
                 link: '/other/yupan/',
               },
               {
-                text: '鱼鱼助手',
+                text: '鱼鱼助手（闲鱼自动化）',
                 link: '/other/auto/',
+                collapsible: true,
+                children: [
+                  {
+                    text: '云控功能说明',
+                    link: '/other/auto/README2',
+                  },
+                  {
+                    text: '运营推广方案',
+                    link: '/other/auto/yu',
+                  },
+                ]
+              },
+              {
+                text: 'AutoGo 云控',
+                link: '/other/autogov/',
+                collapsible: true,
+                children: [
+                  {
+                    text: '开发日志',
+                    link: '/other/autogov/changelog',
+                  },
+                ]
               }
             ]
           },
@@ -175,10 +209,6 @@ export default defineUserConfig({
             text: '日记',
             collapsible: true,
             children: [
-              {
-                text: '日记首页',
-                link: '/diary/',
-              },
               // 按目录自动生成（年→月，最新在前），见 .vuepress/autoSidebar.js
               ...autoSidebar('/diary/', { desc: true }),
             ]
@@ -240,6 +270,16 @@ export default defineUserConfig({
             ]
           }
         ],
+      },
+    },
+
+    // git 插件：页面底部“贡献者”只显示真人，过滤掉 AI 协作者（Co-Authored-By 尾注）
+    themePlugins: {
+      git: {
+        contributors: {
+          transform: (contributors) =>
+            contributors.filter((c) => !/anthropic.com$/i.test(c.email) && !/^claude/i.test(c.name)),
+        },
       },
     },
 

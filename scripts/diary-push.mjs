@@ -10,8 +10,9 @@
  * 提示 nothing to commit，即使 pre-commit 钩子已经加密并暂存了密文，需要再 commit 一次。
  * 这个脚本把这几步串起来。
  */
+import path from 'node:path'
 import { spawnSync } from 'node:child_process'
-import { ROOT } from './diary-common.mjs'
+import { ROOT, VAULTS } from './diary-common.mjs'
 
 function run(cmd, args, { quiet = false } = {}) {
   // 不经过 shell：提交说明里的空格、中文才不会被拆开（git / node 都是可执行文件，直接调用即可）
@@ -25,11 +26,11 @@ function run(cmd, args, { quiet = false } = {}) {
 
 const message = process.argv.slice(2).join(' ').trim() || `日记 ${new Date().toISOString().slice(0, 10)}`
 
-// 1. 只加密有改动的月份
+// 1. 只加密有改动的文件（日记 + 工作总结）
 run('node', ['scripts/diary-lock.mjs', '--changed'])
 
-// 2. 暂存密文
-run('git', ['add', 'docs/diary'])
+// 2. 暂存密文（所有保险库的 docs 目录）
+run('git', ['add', ...VAULTS.map((v) => path.relative(ROOT, v.publicDir))])
 
 // 3. 有变化才提交（--no-verify：钩子里的加密刚刚已经做过了）
 const staged = run('git', ['diff', '--cached', '--quiet'], { quiet: true }).status !== 0

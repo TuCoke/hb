@@ -1,22 +1,42 @@
 #!/usr/bin/env node
 /**
- * 加密日记：private/diary/<年>/<月>.md（明文） → docs/diary/<年>/<月>.md（只含密文）
+ * 加密：private/<库>/**.md（明文） → docs/<库>/**.md（只含密文）
+ * 库的列表见 diary-common.mjs 的 VAULTS（目前：日记、工作总结）。
  *
  * 用法：
- *   npm run diary:lock                 交互输入密码（输入两次）
- *   npm run diary:lock -- -p <密码>    参数传密码（注意会留在 shell 历史里）
- *   DIARY_PASSWORD=<密码> npm run diary:lock
+ *   npm run diary:lock                 加密全部（有 private/.password 就不问密码）
+ *   npm run diary:lock -- --changed    只加密内容有变化的文件（钩子用）
+ *   npm run diary:lock -- --check      只检查有没有未加密的改动，不需要密码（钩子用）
+ *   npm run diary:lock -- -p <密码>
  *
- * 生成的文件只包含：页面标题（取明文第一个一级标题，会公开显示）+ 密文。
- * 每次运行都会重新生成全部月份，密文会变化（盐/IV 随机），这是正常的。
+ * 生成的密文文件只包含：页面标题（取明文第一个一级标题，会公开显示）+ 密文。
+ * 明文里引用的本地图片会转成 data URI 一起加密，图片文件不需要放在 docs 下。
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import MarkdownIt from 'markdown-it'
 import { encryptText, decryptText } from '../docs/.vuepress/diaryCrypto.js'
-import { PRIVATE_DIR, PUBLIC_DIR, listMonthFiles, parseArgs, getPassword, rel } from './diary-common.mjs'
+import { VAULTS, listVaultFiles, counterpart, parseArgs, getPassword, rel, readPayload } from './diary-common.mjs'
 
-const md = new MarkdownIt({ html: true, linkify: true })
+// breaks: true —— 单个换行就显示为换行，怎么分行网页上就怎么显示
+const md = new MarkdownIt({ html: true, linkify: true, breaks: true })
+
+// 图片内联：相对路径的本地图片读成 data URI（≤ 5MB），这样图片也在密文里，不必公开
+const MIME = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', webp: 'image/webp', svg: 'image/svg+xml', bmp: 'image/bmp' }
+const defaultImage = md.renderer.rules.image
+md.renderer.rules.image = (tokens, idx, options, env, self) => {
+  const tok = tokens[idx]
+  const src = tok.attrGet('src') || ''
+  if (env && env.mdFile && !/^(https?:|data:|\/)/i.test(src)) {
+    const abs = path.resolve(path.dirname(env.mdFile), decodeURI(src.split('#')[0].split('?')[0]))
+    if (fs.existsSync(abs) && fs.statSync(abs).isFile() && fs.statSync(abs).size <= 5 * 1024 * 1024) {
+      const mime = MIME[path.extname(abs).slice(1).toLowerCase()] || 'application/octet-stream'
+      tok.attrSet('src', `data:${mime};base64,${fs.readFileSync(abs).toString('base64')}`)
+      env.inlined = (env.inlined || 0) + 1
+    }
+  }
+  return defaultImage(tokens, idx, options, env, self)
+}
 
 /** 把第一个一级标题拆出来当页面标题，正文不再重复渲染它 */
 function splitTitle(text, fallback) {
@@ -28,47 +48,71 @@ function splitTitle(text, fallback) {
   return { title, body: lines.join('\n').trim() + '\n' }
 }
 
+function fallbackTitle(entry) {
+  const m = entry.rel.match(/^(\d{4})\/(\d{2})\.md$/)
+  if (m) return `${m[1]}年${m[2]}月`
+  return path.basename(entry.rel, '.md')
+}
+
+/** 时间戳预筛：密文不存在，或明文比密文新，才可能需要重新加密 */
+function needsLock(entry) {
+  const out = counterpart(entry, 'public')
+  if (!fs.existsSync(out)) return true
+  return fs.statSync(entry.file).mtimeMs > fs.statSync(out).mtimeMs
+}
+
 /** 现有密文解出来是否和明文一致（密码不匹配或文件损坏都视为不一致，需要重新加密） */
-async function sameAsEncrypted({ year, month, file }, pwd) {
-  const out = path.join(PUBLIC_DIR, year, `${month}.md`)
+async function sameAsEncrypted(entry, pwd) {
+  const out = counterpart(entry, 'public')
   if (!fs.existsSync(out)) return false
-  const text = fs.readFileSync(out, 'utf8')
-  const pick = (k) => {
-    const m = text.match(new RegExp('^ +' + k + ': *(.+)$', 'm'))
-    return m ? JSON.parse(m[1].trim()) : undefined
-  }
+  const payload = readPayload(fs.readFileSync(out, 'utf8'))
+  if (!payload) return false
   try {
-    const json = await decryptText(pwd, { salt: pick('salt'), iv: pick('iv'), data: pick('data'), iterations: Number(pick('iterations')) || undefined })
-    return JSON.parse(json).md === fs.readFileSync(file, 'utf8')
+    return JSON.parse(await decryptText(pwd, payload)).md === fs.readFileSync(entry.file, 'utf8')
   } catch {
     return false
   }
 }
 
-/** --changed / --check 的时间戳预筛：密文不存在，或明文比密文新，才可能需要重新加密 */
-function needsLock({ year, month, file }) {
-  const out = path.join(PUBLIC_DIR, year, `${month}.md`)
-  if (!fs.existsSync(out)) return true
-  return fs.statSync(file).mtimeMs > fs.statSync(out).mtimeMs
+function buildStub(entry, title, payload) {
+  return [
+    '---',
+    `title: ${JSON.stringify(title)}`,
+    'vault:',
+    `  v: ${payload.v}`,
+    `  iterations: ${payload.iterations}`,
+    `  salt: ${JSON.stringify(payload.salt)}`,
+    `  iv: ${JSON.stringify(payload.iv)}`,
+    `  data: ${JSON.stringify(payload.data)}`,
+    '---',
+    '',
+    `<!-- ⚠ 本文件由 npm run diary:lock 自动生成，正文已加密，请勿手动编辑。`,
+    `     要修改内容请编辑：${rel(entry.file)} -->`,
+    '',
+    `# ${title}`,
+    '',
+    '<DiaryVault />',
+    '',
+  ].join('\n')
 }
 
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
-  let sources = listMonthFiles(PRIVATE_DIR)
+  let sources = VAULTS.flatMap((v) => listVaultFiles(v, 'private'))
   if (sources.length === 0) {
-    console.log(`没有找到明文日记（${rel(PRIVATE_DIR)}/<年>/<月>.md），先执行 npm run diary 写一篇吧`)
+    console.log('没有找到明文文件（private/diary、private/work 下都是空的）')
     return
   }
   if (opts.changed || opts.check) {
     sources = sources.filter(needsLock)
     if (sources.length === 0) {
-      console.log('日记没有改动，无需重新加密')
+      console.log('没有改动，无需重新加密')
       return
     }
   }
   if (opts.check) {
     // 只报告，不加密：有未加密的改动时以非 0 退出，供 git 钩子使用
-    console.log('以下月份有改动但尚未加密：')
+    console.log('以下文件有改动但尚未加密：')
     for (const s of sources) console.log(`  ${rel(s.file)}`)
     process.exit(1)
   }
@@ -80,55 +124,37 @@ async function main() {
   if (opts.changed) {
     // 有密码时改用内容比对：解开现有密文和明文一致就跳过，比时间戳可靠（编辑器打开文件也不会误判）
     const really = []
-    for (const s of sources) {
-      if (!(await sameAsEncrypted(s, pwd))) really.push(s)
-    }
+    for (const s of sources) if (!(await sameAsEncrypted(s, pwd))) really.push(s)
     sources = really
     if (sources.length === 0) {
-      console.log('日记没有改动，无需重新加密')
+      console.log('没有改动，无需重新加密')
       return
     }
   }
 
-  for (const { year, month, file } of sources) {
-    const text = fs.readFileSync(file, 'utf8')
-    const { title, body } = splitTitle(text, `${year}年${month}月`)
-    const html = md.render(body)
+  for (const entry of sources) {
+    const text = fs.readFileSync(entry.file, 'utf8')
+    const { title, body } = splitTitle(text, fallbackTitle(entry))
+    const env = { mdFile: entry.file, inlined: 0 }
+    const html = md.render(body, env)
     const payload = await encryptText(pwd, JSON.stringify({ md: text, html }))
-
-    const stub = [
-      '---',
-      `title: ${JSON.stringify(title)}`,
-      'diary:',
-      `  v: ${payload.v}`,
-      `  iterations: ${payload.iterations}`,
-      `  salt: ${JSON.stringify(payload.salt)}`,
-      `  iv: ${JSON.stringify(payload.iv)}`,
-      `  data: ${JSON.stringify(payload.data)}`,
-      '---',
-      '',
-      `<!-- ⚠ 本文件由 npm run diary:lock 自动生成，正文已加密，请勿手动编辑。`,
-      `     要写日记请编辑：private/diary/${year}/${month}.md -->`,
-      '',
-      `# ${title}`,
-      '',
-      '<DiaryVault />',
-      '',
-    ].join('\n')
-
-    const out = path.join(PUBLIC_DIR, year, `${month}.md`)
+    const out = counterpart(entry, 'public')
     fs.mkdirSync(path.dirname(out), { recursive: true })
-    fs.writeFileSync(out, stub, 'utf8')
-    console.log(`已加密：${rel(file)} → ${rel(out)}  (${(payload.data.length / 1024).toFixed(1)} KB)`)
+    fs.writeFileSync(out, buildStub(entry, title, payload), 'utf8')
+    const size = (payload.data.length / 1024).toFixed(1)
+    console.log(`已加密：${rel(entry.file)} → ${rel(out)}  (${size} KB${env.inlined ? `，内联 ${env.inlined} 张图片` : ''})`)
   }
 
-  // 提醒：docs/diary 里有、private/diary 里没有的月份
-  const have = new Set(sources.map((s) => `${s.year}/${s.month}`))
-  const orphans = listMonthFiles(PUBLIC_DIR).filter((s) => !have.has(`${s.year}/${s.month}`))
-  for (const o of orphans) {
-    console.warn(`提示：${rel(o.file)} 在本地没有对应明文（可能是在别的电脑写的），未改动。需要时可用 npm run diary:unlock 还原`)
+  // 提醒：docs 里有、private 里没有的密文（可能是别的电脑写的）
+  for (const v of VAULTS) {
+    const have = new Set(listVaultFiles(v, 'private').map((s) => s.rel))
+    for (const o of listVaultFiles(v, 'public')) {
+      if (have.has(o.rel)) continue
+      if (!readPayload(fs.readFileSync(o.file, 'utf8'))) continue
+      console.warn(`提示：${rel(o.file)} 在本地没有对应明文（可能是在别的电脑写的），未改动。需要时可用 npm run diary:unlock 还原`)
+    }
   }
-  if (!opts.changed) console.log('\n完成。现在可以 git add docs/diary 并提交。')
+  if (!opts.changed) console.log('\n完成。现在可以提交了。')
 }
 
 main().catch((e) => {
