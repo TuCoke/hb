@@ -1,28 +1,16 @@
+---
+title: "跨境电商中台ERP项目"
+vault:
+  v: 1
+  iterations: 300000
+  salt: "v92YcZTYMYM8J7uacERhWg=="
+  iv: "bjG8OCw3nsYpncQI"
+  data: "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"
+---
+
+<!-- ⚠ 本文件由 npm run diary:lock 自动生成，正文已加密，请勿手动编辑。
+     要修改内容请编辑：private/work/2025/12/README-Commerce.md -->
+
 # 跨境电商中台ERP项目
 
-## 1. 项目概述
-
-### 1.1 项目背景
-
-随着互联网的快速发展，电商行业也取得了巨大的成功。为了满足电商企业对订单管理、库存管理、财务管理等业务的需求，我们决定开发一套电商中台ERP系统。
-
-
-### 1.2 服务端后端框架搭建集成
-
-| 功能 | 说明 |
-|------|------|
-| 跨境电商erp中台 | 作为跨境电商erp 系统 ，通过1688 商品解析，上架到美客多电商平台。通过Ai优化商品标题，商品图片，商品违规检测，商品规格价格优化，物流快递，订单等管理|
-
-
-#### 1.2.1
-| 组件 | 技术选型 |
-|------|----------|
-| DI | AutoFac |
-| ORM | EFCore |
-| Cache | Redis |
-| Log | Serilog |
-| 长时间任务 | Quartz  |
-| 其他 | 程序中服务类重新封装，通用组件调整 |
-
-#### 1.2.2
-##
+<DiaryVault />
