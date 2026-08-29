@@ -74,6 +74,17 @@ npm run diary:unlock -- --force   # 覆盖已存在的明文
 - 日记里如果要放图片，图片文件本身不会被加密，放到 `docs/.vuepress/public/` 并用绝对路径引用
 - 跳过一次钩子：`git commit --no-verify`（但那样网站上的日记就不会更新）
 
+## 推送失败怎么办
+
+`提交日记.bat` 提示 `Failure when receiving data from the peer` / `Empty reply from server`，而浏览器能打开 GitHub：通常是 git 直连 GitHub 被网络掐断，让 git 走本机代理即可（Clash Verge 默认混合端口 7897，其他软件按实际端口改）：
+
+```powershell
+git config http.https://github.com.proxy http://127.0.0.1:7897   # 只对 github.com、只对本仓库生效
+git config --unset http.https://github.com.proxy                 # 不用代理时撤销
+```
+
+提交已经在本地了，网络恢复后再双击一次 `提交日记.bat` 就会把它推上去（不会重复加密）。
+
 ## 写法示例
 
 `npm run diary` 新建的条目自带下面这个骨架：**用 `###` 分块 → 每块列要点 → 最后一段总结**。用不到的块删掉就行，块名也可以随便改。
